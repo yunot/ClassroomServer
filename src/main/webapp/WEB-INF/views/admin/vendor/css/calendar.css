@@ -17,13 +17,18 @@
 
             text-align: center;
         }
+        #hllo{
+            color: #000000;
+            font: 300 20px/30px "微软雅黑";
+            text-align: center;
+        }
         #nowdate {
             display: block;
-            height: 200px;
+            height: 120px;
             width: 100%;
-            background-color: transparent;
+            background-color: white;
             text-align: center;
-            margin: 20px auto;
+           /* margin: 20px auto;*/
             font: 700 90px/100px "Times New Roman";
             color: #000000;
 
@@ -47,9 +52,9 @@
         #weeky{
 
             display:inline-block;
-            height: 100px;
+            height: 50px;
             width: 100%;
-            background-color: transparent;
+            background-color: white;
             text-align: center;
             margin: 0 auto;
             font: 300 30px/40px "微软雅黑";
@@ -57,9 +62,9 @@
         }
         #weekyEn{
              display: block;
-            height: 100px;
+            height: 50px;
             width: 100%;
-            background-color: transparent;
+            background-color: white;
             text-align: center;
             margin: 0 auto;
             font: 300 30px/40px "Times New Roman";
@@ -67,9 +72,9 @@
         }
         #lunaryear{
             display: block;
-            height: 100px;
+            height: 65px;
             width: 100%;
-            background-color: transparent;
+            background-color: white;
             text-align: center;
             margin: 0 auto;
             font: 300 25px/40px "微软雅黑";
@@ -77,9 +82,9 @@
         }
         #lunardate{
             display: block;
-            height: 100px;
+            height: 65px;
             width: 100%;
-            background-color: transparent;
+            background-color: white;
             text-align: center;
             margin: 0 auto;
             font: 300 25px/40px "微软雅黑";
@@ -89,6 +94,6 @@
         
         .contentYuno{
             width:33%;
-            height:170px;
+            height:120px;
             float:left;
         }

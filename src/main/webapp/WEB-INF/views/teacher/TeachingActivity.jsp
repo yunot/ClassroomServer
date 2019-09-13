@@ -34,50 +34,11 @@
     <link rel="icon" type="image/png" sizes="96x96"
           href="${pageContext.request.contextPath}/views/admin/newresource/imgs/management.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/stamp.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/photocut.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.css">--%>
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">
 
-    <style type="text/css">
 
-        #user-photo {
-            width: 100%;
-            height: 100%;
-        }
-
-        #photo {
-            max-width: 100%;
-            max-height: 350px;
-        }
-
-        .img-preview-box {
-            text-align: center;
-        }
-
-        .img-preview-box > div {
-            display: inline-block;;
-            margin-right: 10px;
-        }
-
-        .img-preview {
-            overflow: hidden;
-        }
-
-        .img-preview-box .img-preview-lg {
-            width: 150px;
-            height: 150px;
-        }
-
-        .img-preview-box .img-preview-md {
-            width: 100px;
-            height: 100px;
-        }
-
-        .img-preview-box .img-preview-sm {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-    </style>
 
 </head>
 <body class="sidebar-fixed header-fixed" id="myBody">
@@ -249,12 +210,26 @@
                 <div class="row">
 
                     <div class="col-md-12">
+
                         <ul class="wrap">
                             <li class="stamp">
                                 <div class="stamp_inner stamp_left">
+                                    <ul class="circle_list circle_list2">
+                                        <p></p>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <p></p>
 
-                                    <div class="calendarYuno">
+                                    </ul>
+
+                                    <div class="col-md-11">
                                         <p id="fulldate"></p>
+                                        <div class="row">
                                         <div class="contentYuno">
                                             <span id="lunaryear"></span>
                                             <span id="weeky"></span>
@@ -267,29 +242,24 @@
                                             <span id="weekyEn"></span>
                                         </div>
 
+                                        </div>
+                                        <p id="hllo"></p>
+
+
 
                                     </div>
 
 
+
                                 </div><div class="stamp_inner stamp_middle">
-                                    <ul class="circle_list circle_list1">
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
 
-                                    </ul>
                                 </div><div class="stamp_inner stamp_right"
-                                     style="background-image:url(${pageContext.request.contextPath}/views/admin/newresource/imgs/sky.jpg)">
+                                     <%--style="background-image:url(${pageContext.request.contextPath}/views/admin/newresource/imgs/sky.jpg)"--%>>
 
 
-                                    <ul class="circle_list circle_list1">
-                                        <li></li>
+
+                                    <ul class="circle_list circle_list1" >
+                                        <p></p>
                                         <p></p>
                                         <li></li>
                                         <p></p>
@@ -297,48 +267,55 @@
                                         <p></p>
                                         <li></li>
                                         <p></p>
-                                        <li></li>
+                                        <p></p>
 
                                     </ul>
 
-                                    <img id="user-photo" src="" width="100%">
+                               <%-- <div class="col-md-11" style="float: right">--%>
+                                <img id="userPhoto" src="${pageContext.request.contextPath}/views/teacher/images/a.png" width="100%">
+                                    <button style="float:right"  class="btn btn btn-outline-info" data-target="#changeModal" data-toggle="modal">更换图片</button>
 
-
-                                </div>
+                                <%--</div>--%>
+                            </div>
                             </li>
 
 
                         </ul>
+
+
                     </div>
+
+
 
 
                 </div>
 
-                <br>
-                <br>
+
 
                 <div class="row">
 
 
                     <div class="col-md-6">
-                        <div class="card p-4">
-                            <div class="card-header">
-                                <div class="col-md-5" style="float: left"><h3>工作标签</h3></div>
-                                <div class="col-md-7" style="float: right;">
-                                    <a class="btn btn-primary"
-                                       href="${pageContext.request.contextPath}/teacher/getNoteById?userId=${sessionScope.get("userId")}">查看工作标签</a>
-                                    <button class="btn btn-primary" onclick="saveNote()">保存</button>
+                        <div class="box13">
+                            <div class="card ">
+                                <div class="card-header">
+                                    <div class="col-md-5" style="float: left"><h3>备忘录</h3></div>
+                                    <div class="col-md-7" style="float: right;">
+                                        <a class="btn btn-primary"
+                                           href="${pageContext.request.contextPath}/teacher/getNoteById?userId=${sessionScope.get("userId")}">历史记录</a>
+                                        <button class="btn btn-primary" onclick="saveNote()">保存</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body" style="border: 1px solid gray">
-                                <div class="editor" id="note"></div>
+                                <div class="card-body" style="border: 1px solid gray">
+                                    <div class="editor" id="note"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <%--<div class="box12">--%>
-                            <div class="card p-4">
+                            <div class="card" style="margin-top:40px">
                                 <div class="card-header bg-light">
                                     <span class="h4 d-block font-weight-normal mb-2">通知</span>
                                 </div>
@@ -351,6 +328,10 @@
                                             </div>
                                         </c:forEach>
                                     </div>
+                                    <div class="card-footer ">
+                                        <span class="h3 d-block font-weight-normal mb-2"></span>
+                                    </div>
+
 
                                 </div>
                                 <nav aria-label="Page navigation example">
@@ -496,6 +477,49 @@
     </div>
 </div>
 
+
+
+
+<%--Modal窗口--%>
+<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="tip-info text-center">
+                    未选择图片
+                </p>
+                <div class="img-container hidden">
+                    <img src="" alt="" id="photo">
+                </div>
+                <div class="img-preview-box hidden">
+                    <hr>
+                    <span>150*150:</span>
+                    <div class="img-preview img-preview-lg">
+                    </div>
+                    <span>100*100:</span>
+                    <div class="img-preview img-preview-md">
+                    </div>
+                    <span>30*30:</span>
+                    <div class="img-preview img-preview-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="btn btn-danger pull-left" for="photoInput">
+                    <input type="file" class="sr-only" id="photoInput" accept="image/*">
+                    <span>打开图片</span>
+                </label>
+                <button class="btn btn-primary disabled" disabled="true" onclick="savePic();" data-dismiss="modal">提交</button>
+                <button class="btn btn-close" aria-hidden="true" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="${pageContext.request.contextPath}/views/admin/vendor/js/showDay.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/newresource/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/newresource/vendor/popper.js/popper.min.js"></script>
@@ -509,50 +533,135 @@
 <script src="${pageContext.request.contextPath}/views/teacher/script/calendar.js"></script>
 
 
-<script type="text/javascript"
-        <%--src="${pageContext.request.contextPath}/views/teacher/dist/js/ajaxfileupload.js"></script>--%>
 <script>
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function () {
+    layui.use('element', function(){
         var element = layui.element;
 
         //…
     });
 </script>
 
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/jquery.min.js"></script>--%>
 <!-- cropper  -->
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.min.js"></script>--%>
+<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.min.js"></script>
 <script type="text/javascript">
-    function savePic() {
-        var formData = new FormData($("#uploadPic")[0]);
-        var ajaxUrl = "${pageContext.request.contextPath}/saveHeaderPic";
-        //alert(ajaxUrl);
-        //$('#uploadPic').serialize() 无法序列化二进制文件，这里采用formData上传
-        //需要浏览器支持：Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。
-        $.ajax({
-            type: "POST",
-            //dataType: "text",
-            url: ajaxUrl,
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (data) {
-                alert("error:" + data.responseText);
-
-            }
+    var initCropperInModal = function(img, input, modal){
+        var $image = img;
+        var $inputImage = input;
+        var $modal = modal;
+        var options = {
+            aspectRatio: 1, // 纵横比
+            viewMode: 2,
+            preview: '.img-preview' // 预览图的class名
+        };
+        // 模态框隐藏后需要保存的数据对象
+        var saveData = {};
+        var URL = window.URL || window.webkitURL;
+        var blobURL;
+        $modal.on('show.bs.modal',function () {
+            // 如果打开模态框时没有选择文件就点击“打开图片”按钮
+            // if(!$inputImage.val()){
+            //    $inputImage.click();
+            // }
+        }).on('shown.bs.modal', function () {
+            // 重新创建
+            $image.cropper( $.extend(options, {
+                ready: function () {
+                    // 当剪切界面就绪后，恢复数据
+                    if(saveData.canvasData){
+                        $image.cropper('setCanvasData', saveData.canvasData);
+                        $image.cropper('setCropBoxData', saveData.cropBoxData);
+                    }
+                }
+            }));
+        }).on('hidden.bs.modal', function () {
+            // 保存相关数据
+            saveData.cropBoxData = $image.cropper('getCropBoxData');
+            saveData.canvasData = $image.cropper('getCanvasData');
+            // 销毁并将图片保存在img标签
+            $image.cropper('destroy').attr('src',blobURL);
         });
-        return false;
+        if (URL) {
+            $inputImage.change(function() {
+                var files = this.files;
+                var file;
+                if (!$image.data('cropper')) {
+                    return;
+                }
+                if (files && files.length) {
+                    file = files[0];
+                    if (/^image\/\w+$/.test(file.type)) {
+
+                        if(blobURL) {
+                            URL.revokeObjectURL(blobURL);
+                        }
+                        blobURL = URL.createObjectURL(file);
+
+                        // 重置cropper，将图像替换
+                        $image.cropper('reset').cropper('replace', blobURL);
+
+                        // 选择文件后，显示和隐藏相关内容
+                        $('.img-container').removeClass('hidden');
+                        $('.img-preview-box').removeClass('hidden');
+                        $('#changeModal .disabled').removeAttr('disabled').removeClass('disabled');
+                        $('#changeModal .tip-info').addClass('hidden');
+
+                    } else {
+                        window.alert('请选择一个图像文件！');
+                    }
+                }
+            });
+        } else {
+            $inputImage.prop('disabled', true).addClass('disabled');
+        }
     }
+
+
+    //转blob
+    var savePic= function(){
+        var photo = $('#photo').cropper('getCroppedCanvas', {
+            width: 300,
+            height: 300
+        }).toBlob(function (blob) {
+
+            var formData = new FormData();
+            formData.append('file', blob,'a.png');
+            var ajaxUrl = "${pageContext.request.contextPath}/savePic";
+            var imgUrl="${pageContext.request.contextPath}/views/teacher/images/a.png"
+            //alert(ajaxUrl);
+            //$('#uploadPic').serialize() 无法序列化二进制文件，这里采用formData上传
+            //需要浏览器支持：Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。
+            $.ajax({
+                type: "POST",
+                //dataType: "text",
+                url: ajaxUrl,
+                data: formData,
+                async: false,
+                cache: false,
+                contentType:false,
+                processData: false,
+                mimeType: "multipart/form-data",
+                success: function (data) {
+                    alert(data);
+                    document.getElementById('userPhoto').src="${pageContext.request.contextPath}/views/teacher/images/a.png?t="+Math.random();
+                    <%--$('.user-photo').attr('src', '${pageContext.request.contextPath}/images/a.png?t=' + Math.random());--%>
+                    $('#changeModal').modal('hide');
+                },
+                error: function(data) {
+                    alert("error:"+data.responseText);
+
+                }
+            });
+            return false;
+        })
+
+    }
+
+    $(function(){
+        initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));
+    });
 </script>
-<%--<script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>--%>
-<%--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 
 
 <script type="text/javascript">
