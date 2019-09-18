@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.UserAttendanceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.UserAttendanceInfo" >
+    <id column="attendance_key" property="attendanceKey" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_identity" property="userIdentity" jdbcType="INTEGER" />
+    <result column="lab_id" property="labId" jdbcType="INTEGER" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="attendance_time" property="attendanceTime" jdbcType="TIMESTAMP" />
+    <result column="attendance_week" property="attendanceWeek" jdbcType="VARCHAR" />
+    <result column="attendance_type" property="attendanceType" jdbcType="VARCHAR" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    attendance_key, user_id, user_identity, lab_id, class_name, attendance_time, attendance_week,
+    attendance_type, class_id, user_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_attendance_info
+    where attendance_key = #{attendanceKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_attendance_info
+    where attendance_key = #{attendanceKey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njupt.classroom.pojo.UserAttendanceInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="attendanceKey" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_attendance_info (user_id, user_identity, lab_id,
+      class_name, attendance_time, attendance_week, 
+      attendance_type, class_id, user_name
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userIdentity,jdbcType=INTEGER}, #{labId,jdbcType=INTEGER},
+      #{className,jdbcType=VARCHAR}, #{attendanceTime,jdbcType=TIMESTAMP}, #{attendanceWeek,jdbcType=VARCHAR}, 
+      #{attendanceType,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.UserAttendanceInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="attendanceKey" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_attendance_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      attendance_key,
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userIdentity != null" >
+        user_identity,
+      </if>
+      <if test="labId != null" >
+        lab_id,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="attendanceTime != null" >
+        attendance_time,
+      </if>
+      <if test="attendanceWeek != null" >
+        attendance_week,
+      </if>
+      <if test="attendanceType != null" >
+        attendance_type,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{attendanceKey,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userIdentity,jdbcType=INTEGER},
+      </if>
+      <if test="labId != null" >
+        #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceTime != null" >
+        #{attendanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceWeek != null" >
+        #{attendanceWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceType != null" >
+        #{attendanceType,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.UserAttendanceInfo" >
+    update user_attendance_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdentity != null" >
+        user_identity = #{userIdentity,jdbcType=INTEGER},
+      </if>
+      <if test="labId != null" >
+        lab_id = #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceTime != null" >
+        attendance_time = #{attendanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceWeek != null" >
+        attendance_week = #{attendanceWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceType != null" >
+        attendance_type = #{attendanceType,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attendance_key = #{attendanceKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njupt.classroom.pojo.UserAttendanceInfo" >
+    update user_attendance_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_identity = #{userIdentity,jdbcType=INTEGER},
+      lab_id = #{labId,jdbcType=INTEGER},
+      class_name = #{className,jdbcType=VARCHAR},
+      attendance_time = #{attendanceTime,jdbcType=TIMESTAMP},
+      attendance_week = #{attendanceWeek,jdbcType=VARCHAR},
+      attendance_type = #{attendanceType,jdbcType=VARCHAR},
+      class_id = #{classId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where attendance_key = #{attendanceKey,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUseridOrderByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT * FROM user_attendance_info WHERE user_id = #{user_id,jdbcType=VARCHAR} ORDER BY attendance_time DESC
+  </select>
+
+  <select id="selectByUserIdentity" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from user_attendance_info where user_identity = #{userIdentity,jdbcType=INTEGER}
+  </select>
+</mapper>

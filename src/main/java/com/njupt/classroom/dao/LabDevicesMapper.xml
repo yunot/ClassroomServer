@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.LabDevicesMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.LabDevices" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="lab_id" property="labId" jdbcType="INTEGER" />
+    <result column="lab_name" property="labName" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="device_json_info" property="deviceJsonInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, lab_id, lab_name, device_name, device_json_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lab_devices
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lab_devices
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njupt.classroom.pojo.LabDevices" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lab_devices (id, lab_id, lab_name, 
+      device_name, device_json_info)
+    values (#{id,jdbcType=INTEGER}, #{labId,jdbcType=INTEGER}, #{labName,jdbcType=VARCHAR}, 
+      #{deviceName,jdbcType=VARCHAR}, #{deviceJsonInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.LabDevices" >
+    insert into lab_devices
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labId != null" >
+        lab_id,
+      </if>
+      <if test="labName != null" >
+        lab_name,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="deviceJsonInfo != null" >
+        device_json_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labId != null" >
+        #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="labName != null" >
+        #{labName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceJsonInfo != null" >
+        #{deviceJsonInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.LabDevices" >
+    update lab_devices
+    <set >
+      <if test="labId != null" >
+        lab_id = #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="labName != null" >
+        lab_name = #{labName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceJsonInfo != null" >
+        device_json_info = #{deviceJsonInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njupt.classroom.pojo.LabDevices" >
+    update lab_devices
+    set lab_id = #{labId,jdbcType=INTEGER},
+      lab_name = #{labName,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      device_json_info = #{deviceJsonInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectDeviceNameByLabId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM lab_devices WHERE lab_id = #{labId,jdbcType=INTEGER}
+  </select>
+</mapper>

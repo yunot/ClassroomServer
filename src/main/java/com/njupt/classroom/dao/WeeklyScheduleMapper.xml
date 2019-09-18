@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.WeeklyScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.WeeklySchedule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="start_weeks" property="startWeeks" jdbcType="VARCHAR" />
+    <result column="stop_weeks" property="stopWeeks" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_time" property="courseTime" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="lab_id" property="labId" jdbcType="INTEGER" />
+    <result column="course_order" property="courseOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, course_id, course_type, time, start_weeks, stop_weeks, course_name, course_time, class_id,
+    teacher_id, lab_id, course_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weekly_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weekly_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njupt.classroom.pojo.WeeklySchedule" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into weekly_schedule (id, course_id, course_type, 
+      time, start_weeks, stop_weeks, 
+      course_name, course_time, class_id, teacher_id,
+      lab_id, course_order)
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=VARCHAR}, #{courseType,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{startWeeks,jdbcType=VARCHAR}, #{stopWeeks,jdbcType=VARCHAR}, 
+      #{courseName,jdbcType=VARCHAR}, #{courseTime,jdbcType=INTEGER}, #{classId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR},
+      #{labId,jdbcType=INTEGER}, #{courseOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.WeeklySchedule">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into weekly_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="startWeeks != null" >
+        start_weeks,
+      </if>
+      <if test="stopWeeks != null" >
+        stop_weeks,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseTime != null" >
+        course_time,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="labId != null" >
+        lab_id,
+      </if>
+      <if test="courseOrder != null" >
+        course_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="startWeeks != null" >
+        #{startWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="stopWeeks != null" >
+        #{stopWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTime != null" >
+        #{courseTime,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="labId != null" >
+        #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="courseOrder != null" >
+        #{courseOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.WeeklySchedule" >
+    update weekly_schedule
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="startWeeks != null" >
+        start_weeks = #{startWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="stopWeeks != null" >
+        stop_weeks = #{stopWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTime != null" >
+        course_time = #{courseTime,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="labId != null" >
+        lab_id = #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="courseOrder != null" >
+        #{courseOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njupt.classroom.pojo.WeeklySchedule" >
+    update weekly_schedule
+    set course_id = #{courseId,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      start_weeks = #{startWeeks,jdbcType=VARCHAR},
+      stop_weeks = #{stopWeeks,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_time = #{courseTime,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      lab_id = #{labId,jdbcType=INTEGER},
+      course_order = #{courseOrder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectWeeklyScheduleAll" resultMap="BaseResultMap" >
+    select * from weekly_schedule order by lab_id
+  </select>
+
+  <select id="selectByTimeAndLabId" resultMap="BaseResultMap" >
+    select * from weekly_schedule where time = #{time,jdbcType=VARCHAR} and lab_id = #{labId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByLabId" resultMap="BaseResultMap" >
+    select * from weekly_schedule where lab_id = #{labId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByLabId" parameterType="java.lang.Integer" >
+    delete from weekly_schedule
+    where lab_id = #{labId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertAll" parameterType="com.njupt.classroom.pojo.WeeklySchedule">
+    insert into weekly_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="startWeeks != null" >
+        start_weeks,
+      </if>
+      <if test="stopWeeks != null" >
+        stop_weeks,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseTime != null" >
+        course_time,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="labId != null" >
+        lab_id,
+      </if>
+      <if test="courseOrder != null" >
+        course_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="startWeeks != null" >
+        #{startWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="stopWeeks != null" >
+        #{stopWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTime != null" >
+        #{courseTime,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="labId != null" >
+        #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="courseOrder != null" >
+        #{courseOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByCourseType1" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from weekly_schedule
+    where course_type = 1 order by lab_id
+  </select>
+
+  <select id="selectGroupByTime" resultMap="BaseResultMap" >
+    SELECT * FROM weekly_schedule GROUP BY TIME
+  </select>
+
+  <delete id="deleteType2ByTimeWeek" parameterType="com.njupt.classroom.pojo.WeeklySchedule" >
+    delete from weekly_schedule
+    where course_type = 2 and time = #{time,jdbcType=VARCHAR} and start_weeks = #{startWeeks,jdbcType=VARCHAR}
+  </delete>
+
+
+</mapper>

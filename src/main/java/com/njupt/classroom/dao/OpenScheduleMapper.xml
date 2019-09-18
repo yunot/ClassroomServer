@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.OpenScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.OpenSchedule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_week" property="openWeek" jdbcType="INTEGER" />
+    <result column="open_time" property="openTime" jdbcType="VARCHAR" />
+    <result column="open_date" property="openDate" jdbcType="DATE" />
+    <result column="open_teacher_id" property="openTeacherId" jdbcType="VARCHAR" />
+    <result column="open_teacher_name" property="openTeacherName" jdbcType="VARCHAR" />
+    <result column="open_lab_id_order" property="openLabIdOrder" jdbcType="VARCHAR" />
+    <result column="open_lab_name_order" property="openLabNameOrder" jdbcType="VARCHAR" />
+    <result column="open_lab_order" property="openLabOrder" jdbcType="VARCHAR" />
+    <result column="open_lab_people" property="openLabPeople" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_week, open_time, open_date, open_teacher_id, open_teacher_name, open_lab_id_order,
+    open_lab_name_order, open_lab_order, open_lab_people
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from open_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from open_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.OpenSchedule" >
+    insert into open_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="openWeek != null" >
+        open_week,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="openDate != null" >
+        open_date,
+      </if>
+      <if test="openTeacherId != null" >
+        open_teacher_id,
+      </if>
+      <if test="openTeacherName != null" >
+        open_teacher_name,
+      </if>
+      <if test="openLabIdOrder != null" >
+        open_lab_id_order,
+      </if>
+      <if test="openLabNameOrder != null" >
+        open_lab_name_order,
+      </if>
+      <if test="openLabOrder != null" >
+        open_lab_order,
+      </if>
+      <if test="openLabPeople != null" >
+        open_lab_people,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="openWeek != null" >
+        #{openWeek,jdbcType=INTEGER},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null" >
+        #{openDate,jdbcType=DATE},
+      </if>
+      <if test="openTeacherId != null" >
+        #{openTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="openTeacherName != null" >
+        #{openTeacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabIdOrder != null" >
+        #{openLabIdOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabNameOrder != null" >
+        #{openLabNameOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabOrder != null" >
+        #{openLabOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabPeople != null" >
+        #{openLabPeople,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.OpenSchedule" >
+    update open_schedule
+    <set >
+      <if test="openWeek != null" >
+        open_week = #{openWeek,jdbcType=INTEGER},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null" >
+        open_date = #{openDate,jdbcType=DATE},
+      </if>
+      <if test="openTeacherId != null" >
+        open_teacher_id = #{openTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="openTeacherName != null" >
+        open_teacher_name = #{openTeacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabIdOrder != null" >
+        open_lab_id_order = #{openLabIdOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabNameOrder != null" >
+        open_lab_name_order = #{openLabNameOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabOrder != null" >
+        open_lab_order = #{openLabOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="openLabPeople != null" >
+        open_lab_people = #{openLabPeople,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from open_schedule
+  </select>
+  <select id="selectCurrentByOpenWeek" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from open_schedule where open_week >= #{currentWeek,jdbcType=INTEGER} ORDER BY open_date
+  </select>
+  <select id="selectCurrentByOpenDate" parameterType="java.util.Date" resultMap="BaseResultMap">
+    select * from open_schedule where open_date >= #{currentDate,jdbcType=DATE} ORDER BY open_date
+  </select>
+</mapper>

@@ -1,0 +1,48 @@
+.td-hover:hover {
+    background-color: #EFEFEF;
+}
+
+.wsTableContent{
+    height: 60%;
+    width: 100%;
+    overflow: auto;
+}
+.wsTableContent th{
+    font-size: 14px;
+}
+.wsTableContent td{
+    font-size: 14px;
+}
+
+.thead-sticky thead tr {
+    background-color: #fafafa;
+    display: block;
+    position: sticky;
+    top: 0;
+}
+
+.thead-sticky tbody{
+    display: block;
+}
+
+.thead-sticky thead tr th:nth-child(n+1){
+    width: 100px;
+}
+
+.thead-sticky thead tr th:nth-child(1){
+    width: 10px;
+}
+
+.thead-sticky tbody tr th{
+    background-color: #fafafa;
+    position: sticky;
+    left: 0;
+    width: 10px;
+}
+
+.thead-sticky tbody tr td{
+    width: 100px;
+}
+
+
+

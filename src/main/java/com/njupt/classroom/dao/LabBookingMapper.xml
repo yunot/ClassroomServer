@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.LabBookingMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.LabBooking" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="open_schedule_id" property="openScheduleId" jdbcType="INTEGER" />
+    <result column="book_date" property="bookDate" jdbcType="DATE" />
+    <result column="book_week" property="bookWeek" jdbcType="INTEGER" />
+    <result column="book_time" property="bookTime" jdbcType="VARCHAR" />
+    <result column="book_lab_id" property="bookLabId" jdbcType="INTEGER" />
+    <result column="book_lab_name" property="bookLabName" jdbcType="VARCHAR" />
+    <result column="book_table_id" property="bookTableId" jdbcType="INTEGER" />
+    <result column="book_content" property="bookContent" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIME" />
+    <result column="end_time" property="endTime" jdbcType="TIME" />
+    <result column="total_time" property="totalTime" jdbcType="TIME" />
+    <result column="is_book_valued" property="isBookValued" jdbcType="BIT" />
+    <result column="is_attended" property="isAttended" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, class_id, user_id, user_name, open_schedule_id, book_date, book_week, book_time, 
+    book_lab_id, book_lab_name, book_table_id, book_content, start_time, end_time, total_time, 
+    is_book_valued, is_attended
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lab_booking
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lab_booking
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.LabBooking" >
+    insert into lab_booking
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="openScheduleId != null" >
+        open_schedule_id,
+      </if>
+      <if test="bookDate != null" >
+        book_date,
+      </if>
+      <if test="bookWeek != null" >
+        book_week,
+      </if>
+      <if test="bookTime != null" >
+        book_time,
+      </if>
+      <if test="bookLabId != null" >
+        book_lab_id,
+      </if>
+      <if test="bookLabName != null" >
+        book_lab_name,
+      </if>
+      <if test="bookTableId != null" >
+        book_table_id,
+      </if>
+      <if test="bookContent != null" >
+        book_content,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="totalTime != null" >
+        total_time,
+      </if>
+      <if test="isBookValued != null" >
+        is_book_valued,
+      </if>
+      <if test="isAttended != null" >
+        is_attended,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="openScheduleId != null" >
+        #{openScheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="bookDate != null" >
+        #{bookDate,jdbcType=DATE},
+      </if>
+      <if test="bookWeek != null" >
+        #{bookWeek,jdbcType=INTEGER},
+      </if>
+      <if test="bookTime != null" >
+        #{bookTime,jdbcType=VARCHAR},
+      </if>
+      <if test="bookLabId != null" >
+        #{bookLabId,jdbcType=INTEGER},
+      </if>
+      <if test="bookLabName != null" >
+        #{bookLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTableId != null" >
+        #{bookTableId,jdbcType=INTEGER},
+      </if>
+      <if test="bookContent != null" >
+        #{bookContent,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="totalTime != null" >
+        #{totalTime,jdbcType=TIME},
+      </if>
+      <if test="isBookValued != null" >
+        #{isBookValued,jdbcType=BIT},
+      </if>
+      <if test="isAttended != null" >
+        #{isAttended,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.LabBooking" >
+    update lab_booking
+    <set >
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="openScheduleId != null" >
+        open_schedule_id = #{openScheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="bookDate != null" >
+        book_date = #{bookDate,jdbcType=DATE},
+      </if>
+      <if test="bookWeek != null" >
+        book_week = #{bookWeek,jdbcType=INTEGER},
+      </if>
+      <if test="bookTime != null" >
+        book_time = #{bookTime,jdbcType=VARCHAR},
+      </if>
+      <if test="bookLabId != null" >
+        book_lab_id = #{bookLabId,jdbcType=INTEGER},
+      </if>
+      <if test="bookLabName != null" >
+        book_lab_name = #{bookLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTableId != null" >
+        book_table_id = #{bookTableId,jdbcType=INTEGER},
+      </if>
+      <if test="bookContent != null" >
+        book_content = #{bookContent,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="totalTime != null" >
+        total_time = #{totalTime,jdbcType=TIME},
+      </if>
+      <if test="isBookValued != null" >
+        is_book_valued = #{isBookValued,jdbcType=BIT},
+      </if>
+      <if test="isAttended != null" >
+        is_attended = #{isAttended,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUserIdOpenScheduleId" parameterType="com.njupt.classroom.pojo.LabBooking" resultMap="BaseResultMap">
+    select * from lab_booking where user_id = #{userId,jdbcType=VARCHAR} and open_schedule_id = #{openScheduleId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM lab_booking WHERE user_id = #{userId,jdbcType=VARCHAR} ORDER BY book_date DESC
+  </select>
+
+  <select id="selectBySelective" parameterType="com.njupt.classroom.pojo.LabBooking" resultMap="BaseResultMap">
+    select * from lab_booking
+    <trim prefix="where " prefixOverrides="and">
+      <if test="id != null and id != ''">
+          id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != ''">
+          and class_id = #{classId,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null and userId != ''">
+          and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="openScheduleId != null">
+          and open_schedule_id = #{openScheduleId,jdbcType=INTEGER}
+      </if>
+      <if test="bookDate != null">
+          and book_date = #{bookDate,jdbcType=DATE}
+      </if>
+      <if test="bookWeek != null">
+          and book_week = #{bookWeek,jdbcType=INTEGER}
+      </if>
+      <if test="bookTime != null and bookTime != ''">
+          and book_time = #{bookTime,jdbcType=VARCHAR}
+      </if>
+      <if test="bookLabId != null">
+          and book_lab_id = #{bookLabId,jdbcType=INTEGER}
+      </if>
+      <if test="bookLabName != null and bookLabName != ''">
+          and book_lab_name = #{bookLabName,jdbcType=VARCHAR}
+      </if>
+      <if test="bookTableId != null">
+          and book_table_id = #{bookTableId,jdbcType=INTEGER}
+      </if>
+      <if test="bookContent != null and bookContent != ''">
+          and book_content = #{bookContent,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+          and start_time = #{startTime,jdbcType=TIME}
+      </if>
+      <if test="endTime != null">
+          and end_time = #{endTime,jdbcType=TIME}
+      </if>
+      <if test="totalTime != null">
+          and total_time = #{totalTime,jdbcType=TIME}
+      </if>
+      <if test="isBookValued != null">
+          and is_book_valued = #{isBookValued,jdbcType=BIT}
+      </if>
+      <if test="isAttended != null">
+          and is_attended = #{isAttended,jdbcType=BIT}
+      </if>
+    </trim>
+  </select>
+
+</mapper>

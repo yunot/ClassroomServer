@@ -1,0 +1,94 @@
+        .calendarYuno {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            text-align: center;
+            color: #C1DBF5;
+        }
+        .calendarYuno p {
+            color: #000000;
+            font: 600 78px/80px "微软雅黑";
+            text-align: center;
+        }
+
+        #fulldate{
+            color: #000000;
+            font: 400 35px/40px "微软雅黑";
+
+            text-align: center;
+        }
+        #nowdate {
+            display: block;
+            height: 200px;
+            width: 100%;
+            background-color: transparent;
+            text-align: center;
+            margin: 20px auto;
+            font: 700 90px/100px "Times New Roman";
+            color: #000000;
+
+        }
+        .calendarYuno strong {
+
+            margin: 20px auto;
+            padding: 5px;
+            display: block;
+            width: 250px;
+            height: 40px;
+            color: #000000;
+            font: 500 20px/26px "微软雅黑";
+
+        }
+        #time {
+            color: #000000;
+            font: 500 20px/40px "微软雅黑";
+        }
+        
+        #weeky{
+
+            display:inline-block;
+            height: 100px;
+            width: 100%;
+            background-color: transparent;
+            text-align: center;
+            margin: 0 auto;
+            font: 300 30px/40px "微软雅黑";
+            color: #000000;
+        }
+        #weekyEn{
+             display: block;
+            height: 100px;
+            width: 100%;
+            background-color: transparent;
+            text-align: center;
+            margin: 0 auto;
+            font: 300 30px/40px "Times New Roman";
+            color: #000000;
+        }
+        #lunaryear{
+            display: block;
+            height: 100px;
+            width: 100%;
+            background-color: transparent;
+            text-align: center;
+            margin: 0 auto;
+            font: 300 25px/40px "微软雅黑";
+            color: #000000;
+        }
+        #lunardate{
+            display: block;
+            height: 100px;
+            width: 100%;
+            background-color: transparent;
+            text-align: center;
+            margin: 0 auto;
+            font: 300 25px/40px "微软雅黑";
+            color: #000000;
+        }
+        
+        
+        .contentYuno{
+            width:33%;
+            height:170px;
+            float:left;
+        }

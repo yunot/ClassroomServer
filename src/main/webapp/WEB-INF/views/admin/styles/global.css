@@ -1,0 +1,32 @@
+a{
+    cursor: pointer;
+}
+
+.bg-color-blue{
+    background-color: #00aaff;
+}
+
+.bg-color-orange{
+    background-color: #ffc800;
+}
+
+.bg-color-red{
+    background-color: #ff0096;
+}
+
+.table-thead-sticky thead tr {
+    background-color: #fafafa;
+    display: block;
+    position: sticky;
+    top: 0;
+}
+.table-thead-sticky tbody{
+    display: block;
+}
+.table-thead-sticky tbody tr td,
+.table-thead-sticky thead tr th{
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    width: 150px;
+}

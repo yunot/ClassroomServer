@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.EnvironmentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.EnvironmentInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="lab_id" property="labId" jdbcType="INTEGER" />
+    <result column="lab_name" property="labName" jdbcType="VARCHAR" />
+    <result column="env_temp" property="envTemp" jdbcType="VARCHAR" />
+    <result column="env_humi" property="envHumi" jdbcType="VARCHAR" />
+    <result column="env_voc" property="envVoc" jdbcType="VARCHAR" />
+    <result column="env_water" property="envWater" jdbcType="BIT" />
+    <result column="env_power" property="envPower" jdbcType="BIT" />
+    <result column="env_VTD" property="envVtd" jdbcType="BIT" />
+    <result column="env_front_door" property="envFrontDoor" jdbcType="BIT" />
+    <result column="env_back_door" property="envBackDoor" jdbcType="BIT" />
+    <result column="env_win_1" property="envWin1" jdbcType="BIT" />
+    <result column="env_win_2" property="envWin2" jdbcType="BIT" />
+    <result column="env_win_3" property="envWin3" jdbcType="BIT" />
+    <result column="env_win_4" property="envWin4" jdbcType="BIT" />
+    <result column="env_info_time" property="envInfoTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, lab_id, lab_name, env_temp, env_humi, env_voc, env_water, env_power, env_VTD, 
+    env_front_door, env_back_door, env_win_1, env_win_2, env_win_3, env_win_4, env_info_time
+  </sql>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.EnvironmentInfo" >
+    insert into environment_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labId != null" >
+        lab_id,
+      </if>
+      <if test="labName != null" >
+        lab_name,
+      </if>
+      <if test="envTemp != null" >
+        env_temp,
+      </if>
+      <if test="envHumi != null" >
+        env_humi,
+      </if>
+      <if test="envVoc != null" >
+        env_voc,
+      </if>
+      <if test="envWater != null" >
+        env_water,
+      </if>
+      <if test="envPower != null" >
+        env_power,
+      </if>
+      <if test="envVtd != null" >
+        env_VTD,
+      </if>
+      <if test="envFrontDoor != null" >
+        env_front_door,
+      </if>
+      <if test="envBackDoor != null" >
+        env_back_door,
+      </if>
+      <if test="envWin1 != null" >
+        env_win_1,
+      </if>
+      <if test="envWin2 != null" >
+        env_win_2,
+      </if>
+      <if test="envWin3 != null" >
+        env_win_3,
+      </if>
+      <if test="envWin4 != null" >
+        env_win_4,
+      </if>
+      <if test="envInfoTime != null" >
+        env_info_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labId != null" >
+        #{labId,jdbcType=INTEGER},
+      </if>
+      <if test="labName != null" >
+        #{labName,jdbcType=VARCHAR},
+      </if>
+      <if test="envTemp != null" >
+        #{envTemp,jdbcType=VARCHAR},
+      </if>
+      <if test="envHumi != null" >
+        #{envHumi,jdbcType=VARCHAR},
+      </if>
+      <if test="envVoc != null" >
+        #{envVoc,jdbcType=VARCHAR},
+      </if>
+      <if test="envWater != null" >
+        #{envWater,jdbcType=BIT},
+      </if>
+      <if test="envPower != null" >
+        #{envPower,jdbcType=BIT},
+      </if>
+      <if test="envVtd != null" >
+        #{envVtd,jdbcType=BIT},
+      </if>
+      <if test="envFrontDoor != null" >
+        #{envFrontDoor,jdbcType=BIT},
+      </if>
+      <if test="envBackDoor != null" >
+        #{envBackDoor,jdbcType=BIT},
+      </if>
+      <if test="envWin1 != null" >
+        #{envWin1,jdbcType=BIT},
+      </if>
+      <if test="envWin2 != null" >
+        #{envWin2,jdbcType=BIT},
+      </if>
+      <if test="envWin3 != null" >
+        #{envWin3,jdbcType=BIT},
+      </if>
+      <if test="envWin4 != null" >
+        #{envWin4,jdbcType=BIT},
+      </if>
+      <if test="envInfoTime != null" >
+        #{envInfoTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="select60ByLabId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM (SELECT * FROM environment_info WHERE lab_id = #{labId,jdbcType=INTEGER}
+    ORDER BY env_info_time DESC LIMIT 60) env_info ORDER BY id
+  </select>
+</mapper>

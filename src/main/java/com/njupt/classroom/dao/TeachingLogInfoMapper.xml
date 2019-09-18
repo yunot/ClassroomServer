@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.TeachingLogInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.TeachingLogInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    <result column="course_week" property="courseWeek" jdbcType="VARCHAR" />
+    <result column="course_date" property="courseDate" jdbcType="DATE" />
+    <result column="course_day_of_week" property="courseDayOfWeek" jdbcType="VARCHAR" />
+    <result column="course_time_of_day" property="courseTimeOfDay" jdbcType="VARCHAR" />
+    <result column="course_lab_id" property="courseLabId" jdbcType="VARCHAR" />
+    <result column="course_lab_name" property="courseLabName" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="class_user_num" property="classUserNum" jdbcType="INTEGER" />
+    <result column="course_class_hour" property="courseClassHour" jdbcType="INTEGER" />
+    <result column="course_safe_info" property="courseSafeInfo" jdbcType="VARCHAR" />
+    <result column="course_env_info" property="courseEnvInfo" jdbcType="VARCHAR" />
+    <result column="course_content" property="courseContent" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, teacher_id, teacher_name, course_week, course_date, course_day_of_week, course_time_of_day, 
+    course_lab_id, course_lab_name, course_name, class_id, class_user_num, course_class_hour, 
+    course_safe_info, course_env_info, course_content, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from teaching_log_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teaching_log_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njupt.classroom.pojo.TeachingLogInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into teaching_log_info (id, teacher_id, teacher_name, 
+      course_week, course_date, course_day_of_week, 
+      course_time_of_day, course_lab_id, course_lab_name, 
+      course_name, class_id, class_user_num, 
+      course_class_hour, course_safe_info, course_env_info, 
+      course_content, remarks)
+    values (#{id,jdbcType=INTEGER}, #{teacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, 
+      #{courseWeek,jdbcType=VARCHAR}, #{courseDate,jdbcType=DATE}, #{courseDayOfWeek,jdbcType=VARCHAR}, 
+      #{courseTimeOfDay,jdbcType=VARCHAR}, #{courseLabId,jdbcType=VARCHAR}, #{courseLabName,jdbcType=VARCHAR}, 
+      #{courseName,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR}, #{classUserNum,jdbcType=INTEGER}, 
+      #{courseClassHour,jdbcType=INTEGER}, #{courseSafeInfo,jdbcType=VARCHAR}, #{courseEnvInfo,jdbcType=VARCHAR}, 
+      #{courseContent,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.TeachingLogInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into teaching_log_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="teacherName != null" >
+        teacher_name,
+      </if>
+      <if test="courseWeek != null" >
+        course_week,
+      </if>
+      <if test="courseDate != null" >
+        course_date,
+      </if>
+      <if test="courseDayOfWeek != null" >
+        course_day_of_week,
+      </if>
+      <if test="courseTimeOfDay != null" >
+        course_time_of_day,
+      </if>
+      <if test="courseLabId != null" >
+        course_lab_id,
+      </if>
+      <if test="courseLabName != null" >
+        course_lab_name,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="classUserNum != null" >
+        class_user_num,
+      </if>
+      <if test="courseClassHour != null" >
+        course_class_hour,
+      </if>
+      <if test="courseSafeInfo != null" >
+        course_safe_info,
+      </if>
+      <if test="courseEnvInfo != null" >
+        course_env_info,
+      </if>
+      <if test="courseContent != null" >
+        course_content,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseWeek != null" >
+        #{courseWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDate != null" >
+        #{courseDate,jdbcType=DATE},
+      </if>
+      <if test="courseDayOfWeek != null" >
+        #{courseDayOfWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTimeOfDay != null" >
+        #{courseTimeOfDay,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabId != null" >
+        #{courseLabId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabName != null" >
+        #{courseLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="classUserNum != null" >
+        #{classUserNum,jdbcType=INTEGER},
+      </if>
+      <if test="courseClassHour != null" >
+        #{courseClassHour,jdbcType=INTEGER},
+      </if>
+      <if test="courseSafeInfo != null" >
+        #{courseSafeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseEnvInfo != null" >
+        #{courseEnvInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseContent != null" >
+        #{courseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.TeachingLogInfo" >
+    update teaching_log_info
+    <set >
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseWeek != null" >
+        course_week = #{courseWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDate != null" >
+        course_date = #{courseDate,jdbcType=DATE},
+      </if>
+      <if test="courseDayOfWeek != null" >
+        course_day_of_week = #{courseDayOfWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTimeOfDay != null" >
+        course_time_of_day = #{courseTimeOfDay,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabId != null" >
+        course_lab_id = #{courseLabId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabName != null" >
+        course_lab_name = #{courseLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="classUserNum != null" >
+        class_user_num = #{classUserNum,jdbcType=INTEGER},
+      </if>
+      <if test="courseClassHour != null" >
+        course_class_hour = #{courseClassHour,jdbcType=INTEGER},
+      </if>
+      <if test="courseSafeInfo != null" >
+        course_safe_info = #{courseSafeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseEnvInfo != null" >
+        course_env_info = #{courseEnvInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseContent != null" >
+        course_content = #{courseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njupt.classroom.pojo.TeachingLogInfo" >
+    update teaching_log_info
+    set teacher_id = #{teacherId,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      course_week = #{courseWeek,jdbcType=VARCHAR},
+      course_date = #{courseDate,jdbcType=DATE},
+      course_day_of_week = #{courseDayOfWeek,jdbcType=VARCHAR},
+      course_time_of_day = #{courseTimeOfDay,jdbcType=VARCHAR},
+      course_lab_id = #{courseLabId,jdbcType=VARCHAR},
+      course_lab_name = #{courseLabName,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      class_id = #{classId,jdbcType=VARCHAR},
+      class_user_num = #{classUserNum,jdbcType=INTEGER},
+      course_class_hour = #{courseClassHour,jdbcType=INTEGER},
+      course_safe_info = #{courseSafeInfo,jdbcType=VARCHAR},
+      course_env_info = #{courseEnvInfo,jdbcType=VARCHAR},
+      course_content = #{courseContent,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from teaching_log_info
+  </select>
+</mapper>

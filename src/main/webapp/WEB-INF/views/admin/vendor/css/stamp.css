@@ -1,0 +1,64 @@
+html,body,div,p,i,span,ul,li{
+    margin:0;
+    padding:0;
+}
+body{
+    background-color:#eee;
+}
+ul{
+    list-style:none;
+}
+.stamp_list{
+    width:100%;
+}
+.stamp{
+    height: 210px;
+    margin-bottom: 20px;
+    position: relative;
+    box-sizing:border-box;
+    border-radius:5px;
+}
+.stamp_inner{
+    height: 210px;
+    display:inline-block;
+    vertical-align:top;
+    box-sizing:border-box;
+    position:relative;
+    border-radius:5px;
+    box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.stamp_left{
+    width: 46%;
+
+}
+.stamp_middle{
+    width:8%
+}
+.stamp_right{
+    width:46%;
+
+}
+.circle_list{
+    position:absolute;
+}
+.circle_list1{
+    left:-10px;
+}
+.circle_list2{
+    right:-10px;
+}
+
+.circle_list>li{
+    background-color:#eee;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    margin-bottom:7px;
+    box-shadow:0 1px 1px rgba(0,0,0,1) inset;
+}
+.circle_list>p{
+    background-color:transparent;
+    width:20px;
+    height:20px;
+
+}

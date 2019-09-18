@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.njupt.classroom.dao.ReportRepairInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.njupt.classroom.pojo.ReportRepairInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="reporter_id" property="reporterId" jdbcType="VARCHAR" />
+    <result column="reporter_name" property="reporterName" jdbcType="VARCHAR" />
+    <result column="instrument_lab_id" property="instrumentLabId" jdbcType="INTEGER" />
+    <result column="instrument_lab_name" property="instrumentLabName" jdbcType="VARCHAR" />
+    <result column="instrument_table_id" property="instrumentTableId" jdbcType="INTEGER" />
+    <result column="instrument_name" property="instrumentName" jdbcType="VARCHAR" />
+    <result column="instrument_id" property="instrumentId" jdbcType="VARCHAR" />
+    <result column="damage_info" property="damageInfo" jdbcType="VARCHAR" />
+    <result column="report_time" property="reportTime" jdbcType="DATE" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="is_repaired" property="isRepaired" jdbcType="VARCHAR" />
+    <result column="repair_time" property="repairTime" jdbcType="DATE" />
+    <result column="repairman_id" property="repairmanId" jdbcType="VARCHAR" />
+    <result column="repairman_name" property="repairmanName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reporter_id, reporter_name, instrument_lab_id, instrument_lab_name, instrument_table_id, 
+    instrument_name, instrument_id, damage_info, report_time, remarks, is_repaired, repair_time, 
+    repairman_id, repairman_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_repair_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from report_repair_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.njupt.classroom.pojo.ReportRepairInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_repair_info (id, reporter_id, reporter_name, 
+      instrument_lab_id, instrument_lab_name, instrument_table_id, 
+      instrument_name, instrument_id, damage_info, 
+      report_time, remarks, is_repaired, 
+      repair_time, repairman_id, repairman_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{reporterId,jdbcType=VARCHAR}, #{reporterName,jdbcType=VARCHAR}, 
+      #{instrumentLabId,jdbcType=INTEGER}, #{instrumentLabName,jdbcType=VARCHAR}, #{instrumentTableId,jdbcType=INTEGER}, 
+      #{instrumentName,jdbcType=VARCHAR}, #{instrumentId,jdbcType=VARCHAR}, #{damageInfo,jdbcType=VARCHAR}, 
+      #{reportTime,jdbcType=DATE}, #{remarks,jdbcType=VARCHAR}, #{isRepaired,jdbcType=VARCHAR}, 
+      #{repairTime,jdbcType=DATE}, #{repairmanId,jdbcType=VARCHAR}, #{repairmanName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.njupt.classroom.pojo.ReportRepairInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_repair_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="reporterId != null" >
+        reporter_id,
+      </if>
+      <if test="reporterName != null" >
+        reporter_name,
+      </if>
+      <if test="instrumentLabId != null" >
+        instrument_lab_id,
+      </if>
+      <if test="instrumentLabName != null" >
+        instrument_lab_name,
+      </if>
+      <if test="instrumentTableId != null" >
+        instrument_table_id,
+      </if>
+      <if test="instrumentName != null" >
+        instrument_name,
+      </if>
+      <if test="instrumentId != null" >
+        instrument_id,
+      </if>
+      <if test="damageInfo != null" >
+        damage_info,
+      </if>
+      <if test="reportTime != null" >
+        report_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="isRepaired != null" >
+        is_repaired,
+      </if>
+      <if test="repairTime != null" >
+        repair_time,
+      </if>
+      <if test="repairmanId != null" >
+        repairman_id,
+      </if>
+      <if test="repairmanName != null" >
+        repairman_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="reporterId != null" >
+        #{reporterId,jdbcType=VARCHAR},
+      </if>
+      <if test="reporterName != null" >
+        #{reporterName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentLabId != null" >
+        #{instrumentLabId,jdbcType=INTEGER},
+      </if>
+      <if test="instrumentLabName != null" >
+        #{instrumentLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentTableId != null" >
+        #{instrumentTableId,jdbcType=INTEGER},
+      </if>
+      <if test="instrumentName != null" >
+        #{instrumentName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentId != null" >
+        #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="damageInfo != null" >
+        #{damageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null" >
+        #{reportTime,jdbcType=DATE},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepaired != null" >
+        #{isRepaired,jdbcType=VARCHAR},
+      </if>
+      <if test="repairTime != null" >
+        #{repairTime,jdbcType=DATE},
+      </if>
+      <if test="repairmanId != null" >
+        #{repairmanId,jdbcType=VARCHAR},
+      </if>
+      <if test="repairmanName != null" >
+        #{repairmanName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.classroom.pojo.ReportRepairInfo" >
+    update report_repair_info
+    <set >
+      <if test="reporterId != null" >
+        reporter_id = #{reporterId,jdbcType=VARCHAR},
+      </if>
+      <if test="reporterName != null" >
+        reporter_name = #{reporterName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentLabId != null" >
+        instrument_lab_id = #{instrumentLabId,jdbcType=INTEGER},
+      </if>
+      <if test="instrumentLabName != null" >
+        instrument_lab_name = #{instrumentLabName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentTableId != null" >
+        instrument_table_id = #{instrumentTableId,jdbcType=INTEGER},
+      </if>
+      <if test="instrumentName != null" >
+        instrument_name = #{instrumentName,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentId != null" >
+        instrument_id = #{instrumentId,jdbcType=VARCHAR},
+      </if>
+      <if test="damageInfo != null" >
+        damage_info = #{damageInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null" >
+        report_time = #{reportTime,jdbcType=DATE},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepaired != null" >
+        is_repaired = #{isRepaired,jdbcType=VARCHAR},
+      </if>
+      <if test="repairTime != null" >
+        repair_time = #{repairTime,jdbcType=DATE},
+      </if>
+      <if test="repairmanId != null" >
+        repairman_id = #{repairmanId,jdbcType=VARCHAR},
+      </if>
+      <if test="repairmanName != null" >
+        repairman_name = #{repairmanName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njupt.classroom.pojo.ReportRepairInfo" >
+    update report_repair_info
+    set reporter_id = #{reporterId,jdbcType=VARCHAR},
+      reporter_name = #{reporterName,jdbcType=VARCHAR},
+      instrument_lab_id = #{instrumentLabId,jdbcType=INTEGER},
+      instrument_lab_name = #{instrumentLabName,jdbcType=VARCHAR},
+      instrument_table_id = #{instrumentTableId,jdbcType=INTEGER},
+      instrument_name = #{instrumentName,jdbcType=VARCHAR},
+      instrument_id = #{instrumentId,jdbcType=VARCHAR},
+      damage_info = #{damageInfo,jdbcType=VARCHAR},
+      report_time = #{reportTime,jdbcType=DATE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      is_repaired = #{isRepaired,jdbcType=VARCHAR},
+      repair_time = #{repairTime,jdbcType=DATE},
+      repairman_id = #{repairmanId,jdbcType=VARCHAR},
+      repairman_name = #{repairmanName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from report_repair_info
+  </select>
+</mapper>
