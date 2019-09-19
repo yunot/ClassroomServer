@@ -38,4 +38,24 @@ public class TeacherServiceImpl implements TeacherService {
     public void subAdvice(TeachAdvice advice) {
         teachAdviceMapper.subAdvice(advice);
     }
+
+    @Override
+    public List<Semester> getCalendarById(String userId) {
+        return teachAdviceMapper.getCalendarById(userId);
+    }
+
+    @Override
+    public void saveSemesterInfo(Semester semester) {
+        teachAdviceMapper.saveSemesterInfo(semester);
+    }
+
+    @Override
+    public void saveNote(Note note) {
+        teachAdviceMapper.saveNote(note);
+    }
+
+    @Override
+    public List<Note> getNoteInfoById(String userId) {
+        return teachAdviceMapper.getNoteInfoById(userId);
+    }
 }

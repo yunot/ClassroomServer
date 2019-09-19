@@ -111,7 +111,7 @@
                     <li class="nav-title"><br></li>
 
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity" class="nav-link">
+                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}" class="nav-link">
                             <i class="icon icon-speedometer"></i> 教学活动
                         </a>
                     </li>

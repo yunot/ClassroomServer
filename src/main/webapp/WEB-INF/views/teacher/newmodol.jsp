@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 
 <html>
@@ -116,7 +117,7 @@
                     <li class="nav-title"><br></li>
 
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity" class="nav-link">
+                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}" class="nav-link">
                             <i class="icon icon-speedometer"></i> 教学活动
                         </a>
                     </li>
@@ -228,12 +229,38 @@
                 </div>
 
 
-                <div class="row ">
-                    <div class="col-md-12">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            工作标签
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>内容</th>
+                                        <th>日期</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <c:forEach items="${noteList}" var="noteList">
+
+                                        <tr>
+                                            <td>${noteList.note}</td>
+                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${noteList.create_date}" /></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
-                    More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect
-                    from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
                 </div>
+
 
             </div>
         </div>

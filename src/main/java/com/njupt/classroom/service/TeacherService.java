@@ -17,4 +17,15 @@ public interface TeacherService {
     public void subAdvice(TeachAdvice advice);
 
 
+    //通过id展示校历
+    public List<Semester> getCalendarById(String userId);
+
+    //保存学期信息
+    public void saveSemesterInfo(Semester semester);
+
+    //保存工作标签
+    void saveNote(Note note);
+
+    //通过id查看工作标签
+    List<Note> getNoteInfoById(String userId);
 }

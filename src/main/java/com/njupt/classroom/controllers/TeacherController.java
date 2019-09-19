@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -43,11 +44,13 @@ public class TeacherController {
     private ReportRepairService reportRepairService;
     @Resource
     private NoticeInfoService noticeInfoService;
+    @Resource
+    private UserService userService;
 
 
 
     @RequestMapping("/TeachingActivity")
-    public String WeeklySchedule(Model model, HttpServletRequest request,
+    public String WeeklySchedule(String userId,Model model, HttpServletRequest request,
                                  @RequestParam(name = "page",required = true,defaultValue = "1")int page,
                                  @RequestParam(name = "size",required = true,defaultValue = "2")int size){
         if (!SystemPermission.checkIdentity(request, 1)) return SystemPermission.redirect;
@@ -119,13 +122,20 @@ public class TeacherController {
         model.addAttribute("SunNt", JSONObject.toJSONString(SunNt));
 
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        List<Semester> calendar = teacherService.getCalendarById(userId);
+        Semester se =  calendar.get(calendar.size()-1);
+        model.addAttribute("calendar", calendar);
+        model.addAttribute("weeks",se.getTotal_weeks());
+        Date date = se.getStart_day();
+        String dateFormat = sdf.format(date);
+        model.addAttribute("startDay",dateFormat);
+        model.addAttribute("semName",se.getSemester_name());
+
         List<NoticeInfo> noticeInfos=noticeInfoService.findAll(page,size);
         //PageInfo是一個分頁類
         PageInfo pageInfo=new PageInfo(noticeInfos);
         model.addAttribute("pageInfo", pageInfo);
-
-
-
 
 
         return "teacher/TeachingActivity";
@@ -192,6 +202,54 @@ public class TeacherController {
         return "teacher/TeachingLog";
     }
 
+
+    /**
+     * 更改校历
+     */
+    @RequestMapping (value = "/saveCalendar",
+            method = RequestMethod.POST,
+            produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String saveAddMainCourse(Semester semester, HttpServletRequest request){
+        if (!SystemPermission.checkIdentity(request, 1)) return SystemPermission.respondBody;
+        teacherService.saveSemesterInfo(semester);
+        return "更改成功";
+    }
+
+    /**
+     * 添加工作标签
+     */
+    @RequestMapping (value = "/saveNote",
+            method = RequestMethod.POST,
+            produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String saveNote(Note note,HttpServletRequest request){
+        if (!SystemPermission.checkIdentity(request, 1)) return SystemPermission.respondBody;
+        teacherService.saveNote(note);
+        return "添加成功";
+    }
+
+
+    /**
+     *通过id查看工作标签
+     */
+    @RequestMapping("/getNoteById")
+    public String getNoteInfoById(String userId,Model model){
+        List<Note> noteList = teacherService.getNoteInfoById(userId);
+        model.addAttribute("noteList",noteList);
+        return "teacher/newmodol";
+    }
+
+    @RequestMapping( value = "/GetUserInfo",
+            method = RequestMethod.GET,
+            produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String GetUserInfo(String userId, HttpServletRequest request){
+        if (!SystemPermission.checkIdentity(request, 1)) return SystemPermission.respondBody;
+        BaseUserInfo userInfo = userService.selectByPrimaryKey(userId);
+        userInfo.setUserPassword("");
+        return JSONObject.toJSONString(userInfo);
+    }
 
 
 

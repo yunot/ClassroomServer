@@ -36,10 +36,11 @@ public class LoginController {
     @RequestMapping("/GoInto")
     public String goLogin(HttpServletRequest request){
         HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
         String uri = "login/login";
         try {
             switch ((Integer)session.getAttribute("userIdentity")){
-                case 1: uri = "redirect:/teacher/TeachingActivity"; break;//教师
+                case 1: uri = "redirect:/teacher/TeachingActivity?userId="+userId; break;//教师
                 case 2: uri = "redirect:/student/WeeklySchedule"; break;//学生
                 case 3: uri = "redirect:/admin/Environment"; break;//管理员
                 case 4: uri = "redirect:/safeguard/ReportRepairs"; break;//维护人员

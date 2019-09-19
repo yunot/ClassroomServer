@@ -1,25 +1,25 @@
 
 
-.btn {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    padding: 6px 12px;
-    background: transparent;
-    border: 0;
-    border-radius: 4px
-}
+/*.btn {*/
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*-ms-touch-action: manipulation;*/
+    /*touch-action: manipulation;*/
+    /*cursor: pointer;*/
+    /*padding: 6px 12px;*/
+    /*background: transparent;*/
+    /*border: 0;*/
+    /*border-radius: 4px*/
+/*}*/
 
-.btn-demo {
-    height: 35px;
-    background-color: #00AAFF;
-    border: #9eeaed;
-    color: #fff;
-    margin: 20px;
-}
+/*.btn-demo {*/
+    /*height: 35px;*/
+    /*background-color: #00AAFF;*/
+    /*border: #9eeaed;*/
+    /*color: #fff;*/
+    /*margin: 20px;*/
+/*}*/
 
 .update-bg {
     position: fixed;
