@@ -4,6 +4,7 @@ import com.njupt.classroom.pojo.Note;
 import com.njupt.classroom.pojo.Semester;
 import com.njupt.classroom.pojo.TeachAdvice;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -30,8 +31,17 @@ public interface TeachAdviceMapper {
     @Insert("insert into note (note,create_date,user_id) values(#{note},#{create_date},#{user_id})")
     void saveNote(Note note);
 
-
     //查看工作标签
-    @Select("select * from note where (user_id) = #{user_id}")
-    List<Note> getNoteInfoById(String userId);
+    @Select("select * from note where (user_id) = #{user_id} limit #{before}, #{after}")
+    List<Note> getPagesNoteInfoById(@Param("user_id") String user_id, @Param("before") int before, @Param("after") int after);
+
+    //通过id查找备忘录条数
+    @Select("select count(*) from note where (user_id) = #{user_id}")
+    int countById(@Param("user_id")String user_id);
+
+    //修改备忘录
+    int updateNote(Note note);
+
+    //删除备忘录
+    int deleteNote(int id);
 }

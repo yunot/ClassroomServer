@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njupt.classroom.dao.TeachAdviceMapper">
+    <sql id="noteField">
+        id as "id",
+        note as "note",
+        create_date as "create_date"
+    </sql>
+
+    <resultMap id="noteMap" type="com.njupt.classroom.pojo.Note">
+        <id property="id" column="id"/>
+        <result property="note" column="note"/>
+        <result property="create_date" column="create_date"/>
+    </resultMap>
+
+    <update id="updateNote" parameterType="com.njupt.classroom.pojo.Note">
+        update note set
+        note = #{note}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNote" parameterType="com.njupt.classroom.pojo.Note">
+        delete from note where id = #{id}
+    </delete>
+
+
+</mapper>

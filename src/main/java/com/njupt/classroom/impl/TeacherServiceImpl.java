@@ -55,7 +55,22 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<Note> getNoteInfoById(String userId) {
-        return teachAdviceMapper.getNoteInfoById(userId);
+    public List<Note> getPagesNoteInfoById(String userId,int before,int after) {
+        return teachAdviceMapper.getPagesNoteInfoById(userId,before,after);
+    }
+
+    @Override
+    public int countById(String userId) {
+        return teachAdviceMapper.countById(userId);
+    }
+
+    @Override
+    public int updateNote(Note note) {
+        return teachAdviceMapper.updateNote(note);
+    }
+
+    @Override
+    public int deleteNote(int id) {
+        return teachAdviceMapper.deleteNote(id);
     }
 }

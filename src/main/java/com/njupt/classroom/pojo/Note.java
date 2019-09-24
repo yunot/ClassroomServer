@@ -1,5 +1,6 @@
 package com.njupt.classroom.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ public class Note {
     private Integer id;
     private String note;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date create_date;
 
     public String getUser_id() {
@@ -19,7 +21,6 @@ public class Note {
     }
 
     private String user_id;
-
 
 
     public Integer getId() {

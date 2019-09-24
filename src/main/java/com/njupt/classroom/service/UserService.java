@@ -11,4 +11,5 @@ public interface UserService {
     BaseUserInfo selectByPrimaryKey(String userId);
 
     String getTeacherNameByuserId(String userId);
+
 }

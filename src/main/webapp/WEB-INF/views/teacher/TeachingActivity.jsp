@@ -79,6 +79,46 @@
         }
     </style>
 
+    <style>
+
+        table.schedule {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table.schedule th:nth-child(1) {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #D1EEEE;
+        }
+
+        table.schedule th {
+            text-align: center;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #F0FFF0;
+        }
+
+        table.schedule td {
+            text-align: center;
+            font-size: 14px;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+    </style>
+
 </head>
 <body class="sidebar-fixed header-fixed" id="myBody">
 
@@ -174,7 +214,8 @@
                     <li class="nav-title"><br></li>
 
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}" class="nav-link active">
+                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}"
+                           class="nav-link active">
                             <i class="icon icon-speedometer"></i> 教学活动
                         </a>
                     </li>
@@ -311,33 +352,31 @@
                         </ul>
                     </div>
 
-
                 </div>
 
                 <br>
-                <br>
 
                 <div class="row">
-
-
                     <div class="col-md-6">
-                        <div class="card p-4">
-                            <div class="card-header">
-                                <div class="col-md-5" style="float: left"><h3>工作标签</h3></div>
-                                <div class="col-md-7" style="float: right;">
-                                    <a class="btn btn-primary"
-                                       href="${pageContext.request.contextPath}/teacher/getNoteById?userId=${sessionScope.get("userId")}">查看工作标签</a>
-                                    <button class="btn btn-primary" onclick="saveNote()">保存</button>
+                        <div class="box5">
+                            <div class="card p-4">
+                                <div class="card-header">
+                                    <div class="col-md-5" style="float: left"><h3>备忘录</h3></div>
+                                    <div class="col-md-7" style="float: right;">
+                                        <a class="btn btn-primary"
+                                           href="${pageContext.request.contextPath}/teacher/getNote">历史记录</a>
+                                        <button class="btn btn-primary" onclick="saveNote()">保存</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body" style="border: 1px solid gray">
-                                <div class="editor" id="note"></div>
+                                <div class="card-body" style="border: 1px solid gray">
+                                    <div class="editor" id="note"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <%--<div class="box12">--%>
+                        <div class="box5">
                             <div class="card p-4">
                                 <div class="card-header bg-light">
                                     <span class="h4 d-block font-weight-normal mb-2">通知</span>
@@ -375,44 +414,41 @@
                                     </ul>
                                 </nav>
                             </div>
-                        <%--</div>--%>
+                        </div>
                     </div>
 
 
                 </div>
 
+                <br>
 
                 <div class="row">
 
                     <div class=" col-md-12">
-                        <div class="card">
-                            <div class="card-header ">
-                                <div class="col-md-2" style="float: left"><h3>校历</h3></div>
-                                <div class="col-md-2" style="float: right;">
-                                    <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
-                                </div>
+                        <div class="box10">
+                            <div class="col-md-2" style="float: left"><h3>校历</h3></div>
+                            <div class="col-md-2" style="float: right;">
+                                <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
                             </div>
 
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <div>
-                                        <table id="SchoolCalendar" class="col-md-12 gradable"></table>
-                                    </div>
+                            <hr>
+
+                            <div class="table-responsive">
+                                <div>
+                                    <table id="SchoolCalendar" class="col-md-12 gradable"></table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
 
-                <div class="row" >
+                <div class="row">
 
-
+                    <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <div class="card p-4">
-                            <img src="${pageContext.request.contextPath}/views/teacher/imgs/time.png" width="100%"
-                                 height="80%">
+                        <div class="wrap">
+                            <table id="timeTable" class="schedule"></table>
                         </div>
                     </div>
 
@@ -510,7 +546,7 @@
 
 
 <script type="text/javascript"
-        <%--src="${pageContext.request.contextPath}/views/teacher/dist/js/ajaxfileupload.js"></script>--%>
+<%--src="${pageContext.request.contextPath}/views/teacher/dist/js/ajaxfileupload.js"></script>--%>
 <script>
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
     layui.use('element', function () {
@@ -705,6 +741,147 @@
     }
 </script>
 
+
+<script>
+    var amCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+    var pmCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+    var ntCourse = ["第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+    var amTime = ["7:50", "8:00-8:45", "8:50-9:35", "9:50-10:35", "10:40-11:25", "11:30-12:15"];
+    var pmTime = ["13:35", "13:45-14:30", "14:35-15:20", "15:35-16:20", "16:25-17:10"];
+    var ntTime = ["18:30-19:15", "19:25-20:10", "20:20-21:05"];
+
+
+    var table = document.getElementById("timeTable");
+
+    //添加表头
+    addTableHead("南京邮电大学教学活动作息时间表", 3, table)
+    //上午
+    createSchedule("上午", 6, table, amCourse, amTime);
+    //空行
+    addSpaceRow(3, 0, table);
+    //下午
+    createSchedule("下午", 5, table, pmCourse, pmTime);
+    //空行
+    addSpaceRow(3, 10, table);
+    //晚上
+    createSchedule("晚上", 3, table, ntCourse, ntTime);
+
+
+    //添加表头
+    function addTableHead(head, colspan, tableName) {
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = head;
+        th.id = "head";
+        th.height = 30;
+        th.classList.add("edit");
+        // th.onclick = function edit(event) {
+        //     alert("您点击的是:" + event.srcElement.id);
+        // }
+        th.colSpan = colspan;
+        tr.appendChild(th);
+        tableName.appendChild(tr);
+    }
+
+    //添加空行
+    function addSpaceRow(colspan, rowHeight, tableName) {
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = '';
+        td.colSpan = colspan;
+        td.height = rowHeight;
+        tr.appendChild(td);
+        tableName.appendChild(tr);
+    }
+
+    //添加不同时间段的安排
+    function createSchedule(periodName, courseNum, tableName, courseName, courseTime) {
+        //时间段名称
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = periodName;
+        td.id = td.innerHTML;
+        td.rowSpan = courseNum + 1;
+        td.classList.add("edit");
+        // td.onclick = function edit(event) {
+        //     alert("您点击的是:" + event.srcElement.id);
+        // }
+        tr.appendChild(td);
+        tableName.appendChild(tr);
+
+        for (var i = 1; i < courseNum + 1; i++) {
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            td1.innerHTML = courseName[i - 1];
+            td1.id = td.innerHTML + td1.innerHTML;
+            td1.classList.add("edit");
+            // td1.onclick = function edit(event) {
+            //     alert("您点击的是:" + event.srcElement.id);
+            // }
+            td2.innerHTML = courseTime[i - 1];
+            td2.id = td2.innerHTML;
+            td2.classList.add("edit");
+            // td2.onclick = function edit(event) {
+            //     alert("您点击的是:" + event.srcElement.id);
+            // }
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tableName.appendChild(tr);
+        }
+    }
+</script>
+
+<script>
+    $(function () {
+        $(".edit").click(function (event) {
+            //td中已经有了input,则不需要响应点击事件
+            if ($(this).children("input").length > 0)
+                return false;
+            var tdObj = $(this);
+            var preText = tdObj.html();
+            //得到当前文本内容
+            var inputObj = $("<input type='text' />");
+            //创建一个文本框元素
+            tdObj.html(""); //清空td中的所有元素
+            inputObj
+                .width(tdObj.width())
+                //设置文本框宽度与td相同
+                .height(tdObj.height())
+                .css({
+                    // border: "0px",
+                    // fontSize: "17px",
+                    // font: "宋体"
+                })
+                .val(preText)
+                .appendTo(tdObj)
+                //把创建的文本框插入到tdObj子节点的最后
+                .trigger("focus")
+                //用trigger方法触发事件
+                .trigger("select");
+
+            inputObj.blur(function () {
+                tdObj.html(preText);
+            });
+            inputObj.keyup(function (event) {
+                if (13 == event.which)
+                //用户按下回车
+                {
+                    var text = $(this).val();
+                    tdObj.html(text);
+                } else if (27 == event.which)
+                //ESC键
+                {
+                    tdObj.html(preText);
+                }
+            });
+            //已进入编辑状态后，不再处理click事件
+            inputObj.click(function () {
+                return false;
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
