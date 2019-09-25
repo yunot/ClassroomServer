@@ -1,6 +1,7 @@
 package com.njupt.classroom.controllers;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.pagehelper.PageInfo;
@@ -49,6 +50,8 @@ public class TeacherController {
     private NoticeInfoService noticeInfoService;
     @Resource
     private UserService userService;
+    @Resource
+    private AdminService adminService;
 
 
 
@@ -73,6 +76,52 @@ public class TeacherController {
         PageInfo pageInfo=new PageInfo(noticeInfos);
         model.addAttribute("pageInfo", pageInfo);
 
+        //作息时间表信息
+        //查询后台数据
+        List<Schedule> scheduleList = adminService.findSchedule();
+        //转为json数据
+        String scheduleJson = JSONObject.toJSONString(scheduleList);
+        //json转为数组
+        JSONArray scheduleArray = JSONArray.parseArray(scheduleJson);
+
+        JSONObject[] object = new JSONObject[scheduleArray.size()];
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            object[i] = scheduleArray.getJSONObject(i);
+        }
+
+        List<String> amTime = new ArrayList<>();
+        List<String> pmTime = new ArrayList<>();
+        List<String> ntTime = new ArrayList<>();
+        List<String> amCourse = new ArrayList<>();
+        List<String> pmCourse = new ArrayList<>();
+        List<String> ntCourse = new ArrayList<>();
+
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            amTime.add((String) object[i].get("amTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            pmTime.add((String) object[i].get("pmTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            ntTime.add((String) object[i].get("ntTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            amCourse.add((String) object[i].get("amCourse"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            pmCourse.add((String) object[i].get("pmCourse"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            ntCourse.add((String) object[i].get("ntCourse"));
+        }
+        String headName = (String) object[0].get("headName");
+        model.addAttribute("headName", headName);
+        model.addAttribute("amTime", amTime);
+        model.addAttribute("pmTime", pmTime);
+        model.addAttribute("ntTime", ntTime);
+        model.addAttribute("amCourse", amCourse);
+        model.addAttribute("pmCourse", pmCourse);
+        model.addAttribute("ntCourse", ntCourse);
 
         return "teacher/TeachingActivity";
     }

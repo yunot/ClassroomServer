@@ -29,6 +29,8 @@ public class AdminServiceImpl implements AdminService {
     private OpenScheduleMapper openScheduleMapper;
     @Resource
     private TotalScheduleMapper totalScheduleMapper;
+    @Resource
+    private ScheduleMapper scheduleMapper;
 
 
 
@@ -269,5 +271,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int deleteCourse(Integer id){
         return courseManagementMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Schedule> findSchedule() {
+        return scheduleMapper.findAll();
+    }
+
+    @Override
+    public int updateSchedule(Schedule schedule) {
+        return scheduleMapper.update(schedule);
     }
 }

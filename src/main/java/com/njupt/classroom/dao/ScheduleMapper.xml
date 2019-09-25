@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njupt.classroom.dao.ScheduleMapper">
+    <sql id="scheduleField">
+        id as "id",
+        head_name as "head_name",
+        am_course as "am_course",
+        pm_course as "pm_course",
+        nt_course as "nt_course",
+        am_time as "am_time",
+        pm_time as "pm_time",
+        nt_time as "nt_time"
+    </sql>
+
+    <resultMap id="scheduleMap" type="com.njupt.classroom.pojo.Schedule">
+        <id property="id" column="id"/>
+        <result property="headName" column="head_name"/>
+        <result property="amCourse" column="am_course"/>
+        <result property="pmCourse" column="pm_course"/>
+        <result property="ntCourse" column="nt_course"/>
+        <result property="amTime" column="am_time"/>
+        <result property="pmTime" column="pm_time"/>
+        <result property="ntTime" column="nt_time"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="scheduleMap">
+        select
+        <include refid="scheduleField"/>
+        from schedule
+    </select>
+
+    <update id="update" parameterType="com.njupt.classroom.pojo.Schedule">
+        update schedule set
+        <if test="headName != null"> head_name = #{headName}</if>
+        <if test="amCourse!= null"> am_course= #{amCourse}</if>
+        <if test="pmCourse!= null"> pm_course= #{pmCourse}</if>
+        <if test="ntCourse!= null"> nt_course= #{ntCourse}</if>
+        <if test="amTime!= null"> am_time= #{amTime}</if>
+        <if test="pmTime!= null"> pm_time= #{pmTime}</if>
+        <if test="ntTime!= null"> nt_time= #{ntTime}</if>
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -34,50 +34,10 @@
     <link rel="icon" type="image/png" sizes="96x96"
           href="${pageContext.request.contextPath}/views/admin/newresource/imgs/management.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/stamp.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/photocut.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.css">--%>
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">
 
-    <style type="text/css">
-
-        #user-photo {
-            width: 100%;
-            height: 100%;
-        }
-
-        #photo {
-            max-width: 100%;
-            max-height: 350px;
-        }
-
-        .img-preview-box {
-            text-align: center;
-        }
-
-        .img-preview-box > div {
-            display: inline-block;;
-            margin-right: 10px;
-        }
-
-        .img-preview {
-            overflow: hidden;
-        }
-
-        .img-preview-box .img-preview-lg {
-            width: 150px;
-            height: 150px;
-        }
-
-        .img-preview-box .img-preview-md {
-            width: 100px;
-            height: 100px;
-        }
-
-        .img-preview-box .img-preview-sm {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-    </style>
 
     <style>
 
@@ -214,8 +174,7 @@
                     <li class="nav-title"><br></li>
 
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}"
-                           class="nav-link active">
+                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}" class="nav-link active">
                             <i class="icon icon-speedometer"></i> 教学活动
                         </a>
                     </li>
@@ -290,12 +249,26 @@
                 <div class="row">
 
                     <div class="col-md-12">
+
                         <ul class="wrap">
                             <li class="stamp">
                                 <div class="stamp_inner stamp_left">
+                                    <ul class="circle_list circle_list2">
+                                        <p></p>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <li></li>
+                                        <p></p>
+                                        <p></p>
 
-                                    <div class="calendarYuno">
+                                    </ul>
+
+                                    <div class="col-md-11">
                                         <p id="fulldate"></p>
+                                        <div class="row">
                                         <div class="contentYuno">
                                             <span id="lunaryear"></span>
                                             <span id="weeky"></span>
@@ -308,29 +281,24 @@
                                             <span id="weekyEn"></span>
                                         </div>
 
+                                        </div>
+                                        <p id="hllo"></p>
+
+
 
                                     </div>
 
 
+
                                 </div><div class="stamp_inner stamp_middle">
-                                    <ul class="circle_list circle_list1">
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
-                                        <p></p>
-                                        <li></li>
 
-                                    </ul>
                                 </div><div class="stamp_inner stamp_right"
-                                     style="background-image:url(${pageContext.request.contextPath}/views/admin/newresource/imgs/sky.jpg)">
+                                     <%--style="background-image:url(${pageContext.request.contextPath}/views/admin/newresource/imgs/sky.jpg)"--%>>
 
 
-                                    <ul class="circle_list circle_list1">
-                                        <li></li>
+
+                                    <ul class="circle_list circle_list1" >
+                                        <p></p>
                                         <p></p>
                                         <li></li>
                                         <p></p>
@@ -338,28 +306,37 @@
                                         <p></p>
                                         <li></li>
                                         <p></p>
-                                        <li></li>
+                                        <p></p>
 
                                     </ul>
 
-                                    <img id="user-photo" src="" width="100%">
+                               <%-- <div class="col-md-11" style="float: right">--%>
+                                <img id="userPhoto" src="${pageContext.request.contextPath}/views/teacher/images/a.png" width="100%">
+                                    <button style="float:right"  class="btn btn btn-outline-info" data-target="#changeModal" data-toggle="modal">更换图片</button>
 
-
-                                </div>
+                                <%--</div>--%>
+                            </div>
                             </li>
 
 
                         </ul>
+
+
                     </div>
+
+
+
 
                 </div>
 
-                <br>
+
 
                 <div class="row">
+
+
                     <div class="col-md-6">
-                        <div class="box5">
-                            <div class="card p-4">
+                        <div class="box13">
+                            <div class="card ">
                                 <div class="card-header">
                                     <div class="col-md-5" style="float: left"><h3>备忘录</h3></div>
                                     <div class="col-md-7" style="float: right;">
@@ -376,8 +353,8 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="box5">
-                            <div class="card p-4">
+                        <%--<div class="box12">--%>
+                            <div class="card" style="margin-top:40px">
                                 <div class="card-header bg-light">
                                     <span class="h4 d-block font-weight-normal mb-2">通知</span>
                                 </div>
@@ -390,6 +367,10 @@
                                             </div>
                                         </c:forEach>
                                     </div>
+                                    <div class="card-footer ">
+                                        <span class="h3 d-block font-weight-normal mb-2"></span>
+                                    </div>
+
 
                                 </div>
                                 <nav aria-label="Page navigation example">
@@ -414,31 +395,31 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+                        <%--</div>--%>
                     </div>
 
 
                 </div>
 
-                <br>
 
                 <div class="row">
 
                     <div class=" col-md-12">
                         <div class="box10">
-                            <div class="col-md-2" style="float: left"><h3>校历</h3></div>
-                            <div class="col-md-2" style="float: right;">
-                                <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
-                            </div>
+                                <div class="col-md-2" style="float: left"><h3>校历</h3></div>
+                                <div class="col-md-2" style="float: right;">
+                                    <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
+                                </div>
 
                             <hr>
 
-                            <div class="table-responsive">
-                                <div>
-                                    <table id="SchoolCalendar" class="col-md-12 gradable"></table>
+                                <div class="table-responsive">
+                                    <div>
+                                        <table id="SchoolCalendar" class="col-md-12 gradable"></table>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -447,7 +428,7 @@
 
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <div class="wrap">
+                        <div class="box10">
                             <table id="timeTable" class="schedule"></table>
                         </div>
                     </div>
@@ -532,6 +513,47 @@
     </div>
 </div>
 
+
+<%--Modal窗口--%>
+<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="tip-info text-center">
+                    未选择图片
+                </p>
+                <div class="img-container hidden">
+                    <img src="" alt="" id="photo">
+                </div>
+                <div class="img-preview-box hidden">
+                    <hr>
+                    <span>150*150:</span>
+                    <div class="img-preview img-preview-lg">
+                    </div>
+                    <span>100*100:</span>
+                    <div class="img-preview img-preview-md">
+                    </div>
+                    <span>30*30:</span>
+                    <div class="img-preview img-preview-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="btn btn-danger pull-left" for="photoInput">
+                    <input type="file" class="sr-only" id="photoInput" accept="image/*">
+                    <span>打开图片</span>
+                </label>
+                <button class="btn btn-primary disabled" disabled="true" onclick="savePic();" data-dismiss="modal">提交</button>
+                <button class="btn btn-close" aria-hidden="true" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="${pageContext.request.contextPath}/views/admin/vendor/js/showDay.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/newresource/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/newresource/vendor/popper.js/popper.min.js"></script>
@@ -545,50 +567,135 @@
 <script src="${pageContext.request.contextPath}/views/teacher/script/calendar.js"></script>
 
 
-<script type="text/javascript"
-<%--src="${pageContext.request.contextPath}/views/teacher/dist/js/ajaxfileupload.js"></script>--%>
 <script>
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function () {
+    layui.use('element', function(){
         var element = layui.element;
 
         //…
     });
 </script>
 
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/jquery.min.js"></script>--%>
 <!-- cropper  -->
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.min.js"></script>--%>
+<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.min.js"></script>
 <script type="text/javascript">
-    function savePic() {
-        var formData = new FormData($("#uploadPic")[0]);
-        var ajaxUrl = "${pageContext.request.contextPath}/saveHeaderPic";
-        //alert(ajaxUrl);
-        //$('#uploadPic').serialize() 无法序列化二进制文件，这里采用formData上传
-        //需要浏览器支持：Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。
-        $.ajax({
-            type: "POST",
-            //dataType: "text",
-            url: ajaxUrl,
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (data) {
-                alert("error:" + data.responseText);
-
-            }
+    var initCropperInModal = function(img, input, modal){
+        var $image = img;
+        var $inputImage = input;
+        var $modal = modal;
+        var options = {
+            aspectRatio: 1, // 纵横比
+            viewMode: 2,
+            preview: '.img-preview' // 预览图的class名
+        };
+        // 模态框隐藏后需要保存的数据对象
+        var saveData = {};
+        var URL = window.URL || window.webkitURL;
+        var blobURL;
+        $modal.on('show.bs.modal',function () {
+            // 如果打开模态框时没有选择文件就点击“打开图片”按钮
+            // if(!$inputImage.val()){
+            //    $inputImage.click();
+            // }
+        }).on('shown.bs.modal', function () {
+            // 重新创建
+            $image.cropper( $.extend(options, {
+                ready: function () {
+                    // 当剪切界面就绪后，恢复数据
+                    if(saveData.canvasData){
+                        $image.cropper('setCanvasData', saveData.canvasData);
+                        $image.cropper('setCropBoxData', saveData.cropBoxData);
+                    }
+                }
+            }));
+        }).on('hidden.bs.modal', function () {
+            // 保存相关数据
+            saveData.cropBoxData = $image.cropper('getCropBoxData');
+            saveData.canvasData = $image.cropper('getCanvasData');
+            // 销毁并将图片保存在img标签
+            $image.cropper('destroy').attr('src',blobURL);
         });
-        return false;
+        if (URL) {
+            $inputImage.change(function() {
+                var files = this.files;
+                var file;
+                if (!$image.data('cropper')) {
+                    return;
+                }
+                if (files && files.length) {
+                    file = files[0];
+                    if (/^image\/\w+$/.test(file.type)) {
+
+                        if(blobURL) {
+                            URL.revokeObjectURL(blobURL);
+                        }
+                        blobURL = URL.createObjectURL(file);
+
+                        // 重置cropper，将图像替换
+                        $image.cropper('reset').cropper('replace', blobURL);
+
+                        // 选择文件后，显示和隐藏相关内容
+                        $('.img-container').removeClass('hidden');
+                        $('.img-preview-box').removeClass('hidden');
+                        $('#changeModal .disabled').removeAttr('disabled').removeClass('disabled');
+                        $('#changeModal .tip-info').addClass('hidden');
+
+                    } else {
+                        window.alert('请选择一个图像文件！');
+                    }
+                }
+            });
+        } else {
+            $inputImage.prop('disabled', true).addClass('disabled');
+        }
     }
+
+
+    //转blob
+    var savePic= function(){
+        var photo = $('#photo').cropper('getCroppedCanvas', {
+            width: 300,
+            height: 300
+        }).toBlob(function (blob) {
+
+            var formData = new FormData();
+            formData.append('file', blob,'a.png');
+            var ajaxUrl = "${pageContext.request.contextPath}/savePic";
+            var imgUrl="${pageContext.request.contextPath}/views/teacher/images/a.png"
+            //alert(ajaxUrl);
+            //$('#uploadPic').serialize() 无法序列化二进制文件，这里采用formData上传
+            //需要浏览器支持：Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。
+            $.ajax({
+                type: "POST",
+                //dataType: "text",
+                url: ajaxUrl,
+                data: formData,
+                async: false,
+                cache: false,
+                contentType:false,
+                processData: false,
+                mimeType: "multipart/form-data",
+                success: function (data) {
+                    alert(data);
+                    document.getElementById('userPhoto').src="${pageContext.request.contextPath}/views/teacher/images/a.png?t="+Math.random();
+                    <%--$('.user-photo').attr('src', '${pageContext.request.contextPath}/images/a.png?t=' + Math.random());--%>
+                    $('#changeModal').modal('hide');
+                },
+                error: function(data) {
+                    alert("error:"+data.responseText);
+
+                }
+            });
+            return false;
+        })
+
+    }
+
+    $(function(){
+        initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));
+    });
 </script>
-<%--<script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>--%>
-<%--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 
 
 <script type="text/javascript">
@@ -741,45 +848,51 @@
     }
 </script>
 
-
 <script>
-    var amCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-    var pmCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-    var ntCourse = ["第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-    var amTime = ["7:50", "8:00-8:45", "8:50-9:35", "9:50-10:35", "10:40-11:25", "11:30-12:15"];
-    var pmTime = ["13:35", "13:45-14:30", "14:35-15:20", "15:35-16:20", "16:25-17:10"];
-    var ntTime = ["18:30-19:15", "19:25-20:10", "20:20-21:05"];
+    //将list转为js数组
+    var amCourse = '${amCourse}'.replace('[', '').replace(']', '').split(',');
+    var pmCourse = '${pmCourse}'.replace('[', '').replace(']', '').split(',');
+    var ntCourse = '${ntCourse}'.replace('[', '').replace(']', '').split(',');
+    var amTime = '${amTime}'.replace('[', '').replace(']', '').split(',');
+    var pmTime = '${pmTime}'.replace('[', '').replace(']', '').split(',');
+    var ntTime = '${ntTime}'.replace('[', '').replace(']', '').split(',');
 
+    /* var amCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var pmCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var ntCourse = ["第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var amTime = ["7:50", "8:00-8:45", "8:50-9:35", "9:50-10:35", "10:40-11:25", "11:30-12:15"];
+     var pmTime = ["13:35", "13:45-14:30", "14:35-15:20", "15:35-16:20", "16:25-17:10"];
+     var ntTime = ["18:30-19:15", "19:25-20:10", "20:20-21:05"];*/
 
     var table = document.getElementById("timeTable");
-
+    var headName = '${headName}';
     //添加表头
-    addTableHead("南京邮电大学教学活动作息时间表", 3, table)
+    addTableHead(headName, 3, table);
     //上午
-    createSchedule("上午", 6, table, amCourse, amTime);
+    createSchedule("上午", 6, table, amCourse, amTime, "am");
     //空行
-    addSpaceRow(3, 0, table);
+    addSpaceRow(3, 10, table);
     //下午
-    createSchedule("下午", 5, table, pmCourse, pmTime);
+    createSchedule("下午", 5, table, pmCourse, pmTime, "pm");
     //空行
     addSpaceRow(3, 10, table);
     //晚上
-    createSchedule("晚上", 3, table, ntCourse, ntTime);
+    createSchedule("晚上", 3, table, ntCourse, ntTime, "nt");
 
 
     //添加表头
     function addTableHead(head, colspan, tableName) {
         var tr = document.createElement("tr");
-        var th = document.createElement("th");
-        th.innerHTML = head;
-        th.id = "head";
-        th.height = 30;
-        th.classList.add("edit");
+        var td = document.createElement("th");
+        td.innerHTML = head;
+        td.id = "head";
+        td.height = 50;
+        td.classList.add("edit");
         // th.onclick = function edit(event) {
         //     alert("您点击的是:" + event.srcElement.id);
         // }
-        th.colSpan = colspan;
-        tr.appendChild(th);
+        td.colSpan = colspan;
+        tr.appendChild(td);
         tableName.appendChild(tr);
     }
 
@@ -795,14 +908,14 @@
     }
 
     //添加不同时间段的安排
-    function createSchedule(periodName, courseNum, tableName, courseName, courseTime) {
+    function createSchedule(periodName, courseNum, tableName, courseName, courseTime, src) {
         //时间段名称
-        var tr = document.createElement("tr");
+        tr = document.createElement("tr");
         var td = document.createElement("td");
         td.innerHTML = periodName;
         td.id = td.innerHTML;
         td.rowSpan = courseNum + 1;
-        td.classList.add("edit");
+        // td.classList.add("edit");
         // td.onclick = function edit(event) {
         //     alert("您点击的是:" + event.srcElement.id);
         // }
@@ -814,13 +927,13 @@
             var td1 = document.createElement("td");
             var td2 = document.createElement("td");
             td1.innerHTML = courseName[i - 1];
-            td1.id = td.innerHTML + td1.innerHTML;
+            td1.id = i + "," + src + "_course";
             td1.classList.add("edit");
             // td1.onclick = function edit(event) {
             //     alert("您点击的是:" + event.srcElement.id);
             // }
             td2.innerHTML = courseTime[i - 1];
-            td2.id = td2.innerHTML;
+            td2.id = i + "," + src + "_time";
             td2.classList.add("edit");
             // td2.onclick = function edit(event) {
             //     alert("您点击的是:" + event.srcElement.id);
@@ -832,56 +945,7 @@
     }
 </script>
 
-<script>
-    $(function () {
-        $(".edit").click(function (event) {
-            //td中已经有了input,则不需要响应点击事件
-            if ($(this).children("input").length > 0)
-                return false;
-            var tdObj = $(this);
-            var preText = tdObj.html();
-            //得到当前文本内容
-            var inputObj = $("<input type='text' />");
-            //创建一个文本框元素
-            tdObj.html(""); //清空td中的所有元素
-            inputObj
-                .width(tdObj.width())
-                //设置文本框宽度与td相同
-                .height(tdObj.height())
-                .css({
-                    // border: "0px",
-                    // fontSize: "17px",
-                    // font: "宋体"
-                })
-                .val(preText)
-                .appendTo(tdObj)
-                //把创建的文本框插入到tdObj子节点的最后
-                .trigger("focus")
-                //用trigger方法触发事件
-                .trigger("select");
 
-            inputObj.blur(function () {
-                tdObj.html(preText);
-            });
-            inputObj.keyup(function (event) {
-                if (13 == event.which)
-                //用户按下回车
-                {
-                    var text = $(this).val();
-                    tdObj.html(text);
-                } else if (27 == event.which)
-                //ESC键
-                {
-                    tdObj.html(preText);
-                }
-            });
-            //已进入编辑状态后，不再处理click事件
-            inputObj.click(function () {
-                return false;
-            });
-        });
-    });
-</script>
 
 </body>
 </html>

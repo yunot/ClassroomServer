@@ -30,19 +30,18 @@
             weeky.innerHTML= dayArr[fullTime.getDay()];
             weekyEn.innerHTML= dayEnArr[fullTime.getDay()];
             //名言数组
-            /*var hlloarr = [
+            var hlloarr = [
                 "只有登上山顶，才能看到那边的风光",
                 "山路曲折盘旋，但毕竟朝着顶峰延伸",
-                "勤奋是你生命的密码，能译出你一部壮丽的史诗",
+                "莫道前路无知己，天下谁人不识君",
                 "左右一个人成功的，不是能力，而是选择",
-                "我们这个世界，从不会给一个伤心的落伍者颁发奖牌",
                 "没有天生的信心，只有不断培养的信心",
                 "每一发奋努力的背后，必有加倍的赏赐",
                 "不要等待机会，而要创造机会",
                 "含泪播种的人一定能含笑收获",
                 "让信念坚持下去，梦想就会实现",
                 "不要给自己的失败找借口",
-                "要学会新东西，要不断进步，就必须放低自己的姿势"
+                "要不断进步，就必须放低自己的姿势"
             ];
             //当前时间段默认的名言
             hllo.innerHTML = hlloarr[parseInt(hours/2)];
@@ -62,14 +61,14 @@
                 m<10? m="0"+m:m;
                 h<10? h="0"+h:h;
                 //d<10? d="0"+d:d;
-                time.innerHTML = h +" 时 "+m+" 分 "+s+" 秒 ";
+                /*time.innerHTML = h +" 时 "+m+" 分 "+s+" 秒 ";*/
                 //每60秒切换一次名言
                 if(s == 0 ){
                     hllo.innerHTML = hlloarr[parseInt(m%12)];
                 }
 
 
-            }*/
+            }
         }
 
         function show2(){

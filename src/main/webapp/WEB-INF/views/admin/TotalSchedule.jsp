@@ -34,7 +34,45 @@
         }
     </style>
     <script async defer src="${pageContext.request.contextPath}/views/admin/vendor/js/bottons.js"></script>
+    <style>
 
+        table.schedule {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table.schedule th:nth-child(1) {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #D1EEEE;
+        }
+
+        table.schedule th {
+            text-align: center;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #F0FFF0;
+        }
+
+        table.schedule td {
+            text-align: center;
+            font-size: 14px;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body class="h-100" id="myBody">
 <!-- Message Dialog -->
@@ -97,7 +135,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/admin/WeeklySchedule">
-                            <span class="mdi mdi-18px mdi-numeric-7-box-multiple-outline">周课表管理
+                            <span class="mdi mdi-18px mdi-numeric-7-box-multiple-outline"></span> 周课表管理
                         </a>
                     </li>
                     <li class="nav-item">
@@ -209,6 +247,7 @@
                                 </div>
                                 <div class="col-12 col-md-8 text-right">
                                     <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-white" onclick="changeSchedule()">修改作息时间</button>
                                         <button type="button" class="btn btn-white" onclick="importWeeklySche()">导入周课表</button>
                                         <button type="button" class="btn btn-white" onclick="resetView()">重置总课表</button>
                                     </div>
@@ -373,6 +412,24 @@
     </div>
 </div>
 
+<%--修改作息时间--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="ScheduleTable">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">更改作息时间</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="timeTable" class="schedule"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="${pageContext.request.contextPath}/views/admin/vendor/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/vendor/js/popper.min.js"></script>
@@ -405,16 +462,271 @@
         $('#myBody').loading('stop');
     }
 
-//    $(document).ready(function() {
-//        var table = $('#resultTable').DataTable();
-//
-//        $('#resultTable tbody').on( 'click', 'tr', function () {
-//            //$(this).toggleClass('selected');
-//        } );
-//
-//    } );
-
 </script>
+
+<script>
+    function changeSchedule() {
+        $('#ScheduleTable').modal('show');
+    }
+</script>
+
+<script>
+    //将list转为js数组
+    var amCourse = '${amCourse}'.replace('[', '').replace(']', '').split(',');
+    var pmCourse = '${pmCourse}'.replace('[', '').replace(']', '').split(',');
+    var ntCourse = '${ntCourse}'.replace('[', '').replace(']', '').split(',');
+    var amTime = '${amTime}'.replace('[', '').replace(']', '').split(',');
+    var pmTime = '${pmTime}'.replace('[', '').replace(']', '').split(',');
+    var ntTime = '${ntTime}'.replace('[', '').replace(']', '').split(',');
+
+    /* var amCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var pmCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var ntCourse = ["第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
+     var amTime = ["7:50", "8:00-8:45", "8:50-9:35", "9:50-10:35", "10:40-11:25", "11:30-12:15"];
+     var pmTime = ["13:35", "13:45-14:30", "14:35-15:20", "15:35-16:20", "16:25-17:10"];
+     var ntTime = ["18:30-19:15", "19:25-20:10", "20:20-21:05"];*/
+
+    var table = document.getElementById("timeTable");
+    var headName = '${headName}';
+    //添加表头
+    addTableHead(headName, 3, table);
+    //上午
+    createSchedule("上午", 6, table, amCourse, amTime, "am");
+    //空行
+    addSpaceRow(3, 10, table);
+    //下午
+    createSchedule("下午", 5, table, pmCourse, pmTime, "pm");
+    //空行
+    addSpaceRow(3, 10, table);
+    //晚上
+    createSchedule("晚上", 3, table, ntCourse, ntTime, "nt");
+
+
+    //添加表头
+    function addTableHead(head, colspan, tableName) {
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = head;
+        td.id = "head";
+        td.height = 50;
+        td.classList.add("edit");
+        // th.onclick = function edit(event) {
+        //     alert("您点击的是:" + event.srcElement.id);
+        // }
+        td.colSpan = colspan;
+        tr.appendChild(td);
+        tableName.appendChild(tr);
+    }
+
+    //添加空行
+    function addSpaceRow(colspan, rowHeight, tableName) {
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = '';
+        td.colSpan = colspan;
+        td.height = rowHeight;
+        tr.appendChild(td);
+        tableName.appendChild(tr);
+    }
+
+    //添加不同时间段的安排
+    function createSchedule(periodName, courseNum, tableName, courseName, courseTime, src) {
+        //时间段名称
+        tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = periodName;
+        td.id = td.innerHTML;
+        td.rowSpan = courseNum + 1;
+        // td.classList.add("edit");
+        // td.onclick = function edit(event) {
+        //     alert("您点击的是:" + event.srcElement.id);
+        // }
+        tr.appendChild(td);
+        tableName.appendChild(tr);
+
+        for (var i = 1; i < courseNum + 1; i++) {
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            td1.innerHTML = courseName[i - 1];
+            td1.id = i + "," + src + "_course";
+            td1.classList.add("edit");
+            // td1.onclick = function edit(event) {
+            //     alert("您点击的是:" + event.srcElement.id);
+            // }
+            td2.innerHTML = courseTime[i - 1];
+            td2.id = i + "," + src + "_time";
+            td2.classList.add("edit");
+            // td2.onclick = function edit(event) {
+            //     alert("您点击的是:" + event.srcElement.id);
+            // }
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tableName.appendChild(tr);
+        }
+    }
+</script>
+
+<script>
+    $(function () {
+        $(".edit").click(function (event) {
+            //td中已经有了input,则不需要响应点击事件
+            if ($(this).children("input").length > 0)
+                return false;
+            var tdObj = $(this);
+            var preText = tdObj.html();
+            //得到当前文本内容
+            var inputObj = $("<input type='text' />");
+            //创建一个文本框元素
+            tdObj.html(""); //清空td中的所有元素
+            inputObj
+                .width(tdObj.width()/2)
+                //设置文本框宽度与td相同
+                .height(tdObj.height())
+                .css({
+                    // border: "0px",
+                    // fontSize: "17px",
+                    // font: "宋体"
+                })
+                .val(preText)
+                .appendTo(tdObj)
+                //把创建的文本框插入到tdObj子节点的最后
+                .trigger("focus")
+                //用trigger方法触发事件
+                .trigger("select");
+
+            inputObj.blur(function () {
+                tdObj.html(preText);
+            });
+            inputObj.keyup(function (event) {
+                if (13 === event.which)
+                //用户按下回车
+                {
+                    var text = $(this).val();
+                    tdObj.html(text);
+                    var id = tdObj.attr("id");
+                    var str = id.split(",");
+                    if (str[1] === "am_time") {
+                        $.ajax({
+                            url: getProjectName() + "/admin/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                amTime: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (str[1] === "am_course") {
+                        $.ajax({
+                            url: getProjectName() + "/admin/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                amCourse: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (str[1] === "pm_course") {
+                        $.ajax({
+                            url: getProjectName() + "/admin/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                pmCourse: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (str[1] === "pm_time") {
+                        $.ajax({
+                            url: getProjectName() + "/admin/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                pmTime: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (str[1] === "nt_course") {
+                        $.ajax({
+                            url: getProjectName() + "/user/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                ntCourse: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (str[1] === "nt_time") {
+                        $.ajax({
+                            url: getProjectName() + "/user/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: str[0],
+                                ntTime: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    } else if (id === "head") {
+                        $.ajax({
+                            url: getProjectName() + "/user/updateSchedule",
+                            type: "POST",
+                            data: {
+                                id: 1,
+                                headName: text
+                            },
+                            success: function () {
+                                alert("更改成功!");
+                            },
+                            error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }
+
+                } else if (27 === event.which)
+                //ESC键
+                {
+                    tdObj.html(preText);
+                }
+            });
+            //已进入编辑状态后，不再处理click事件
+            inputObj.click(function () {
+                return false;
+            });
+        });
+    });
+</script>
+
 
 </body>
 </html>

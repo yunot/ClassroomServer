@@ -52,4 +52,8 @@ public interface AdminService {
     int updateCourse(CourseManagement cm);
 
     int deleteCourse(Integer id);
+
+    List<Schedule> findSchedule();
+
+    int updateSchedule(Schedule schedule);
 }

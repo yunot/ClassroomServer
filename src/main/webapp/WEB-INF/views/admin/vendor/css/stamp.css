@@ -12,7 +12,7 @@ ul{
     width:100%;
 }
 .stamp{
-    height: 210px;
+    height: auto;
     margin-bottom: 20px;
     position: relative;
     box-sizing:border-box;
@@ -20,36 +20,39 @@ ul{
 }
 .stamp_inner{
     height: 210px;
+    background-color: white;
     display:inline-block;
     vertical-align:top;
     box-sizing:border-box;
     position:relative;
     border-radius:5px;
-    box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
+    /*box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);*/
+    box-shadow:0px 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
 .stamp_left{
-    width: 46%;
-
+    width: 49%;
+    box-shadow:0px 10px 1px 1px rgba(0,0,0,0.2);
 }
 .stamp_middle{
-    width:8%
+    width:2%;
+    box-shadow:1px 10px 1px 1px rgba(0,0,0,0.2);
 }
 .stamp_right{
-    width:46%;
-
+    width:49%;
+    box-shadow:1px 10px 1px 1px rgba(0,0,0,0.2);
 }
 .circle_list{
     position:absolute;
 }
 .circle_list1{
-    left:-10px;
+    left:7px;
 }
 .circle_list2{
-    right:-10px;
+    right:7px;
 }
 
 .circle_list>li{
-    background-color:#eee;
+    background-color: #ffe;
     width:20px;
     height:20px;
     border-radius:50%;
@@ -61,4 +64,82 @@ ul{
     width:20px;
     height:20px;
 
+}
+
+
+
+@media screen and (max-width: 768px) {
+    ul{
+        list-style:none;
+    }
+    .stamp_list{
+        width:100%;
+    }
+    .stamp{
+        height: auto;
+        margin-bottom: 20px;
+        position: relative;
+        box-sizing:border-box;
+        border-radius:5px;
+    }
+    .stamp_inner{
+        height: 210px;
+        display:inline-block;
+        vertical-align:top;
+        box-sizing:border-box;
+        position:relative;
+        border-radius:5px;
+        /*box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);*/
+        box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    }
+    .stamp_left{
+        width: 100%;
+
+    }
+    .stamp_middle{
+        height: 0px;
+        display:inline-block;
+        vertical-align:top;
+        box-sizing:border-box;
+        position:relative;
+        border-radius:5px;
+        box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .stamp_right{
+        width:100%;
+
+    }
+    .circle_list{
+        position:absolute;
+    }
+    .circle_list1{
+        top:0px;
+        left:25%;
+
+    }
+    .circle_list2{
+        bottom:0px;
+        right:0%;
+        left:25%;
+
+    }
+
+    .circle_list>li{
+        background-color:#eee;
+        width:20px;
+        height:20px;
+        border-radius:50%;
+        margin-bottom:7px;
+        float:left;
+        box-shadow:0 1px 1px rgba(0,0,0,1) inset;
+    }
+    .circle_list>p{
+        background-color:transparent;
+        width:20px;
+        height:20px;
+        float:left;
+
+    }
 }

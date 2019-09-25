@@ -1,5 +1,6 @@
 package com.njupt.classroom.controllers;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.njupt.classroom.beans.*;
 import com.njupt.classroom.dao.UserAttendanceInfoMapper;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -456,6 +458,54 @@ public class AdminController {
         model.addAttribute("courseNameSelect", JSONObject.toJSONString(selectBean.getCourseNameList()));
         model.addAttribute("classIdSelect", JSONObject.toJSONString(selectBean.getClassIdList()));
         model.addAttribute("teacherSelect", JSONObject.toJSONString(selectBean.getTeacherList()));
+
+        //作息时间表信息
+        //查询后台数据
+        List<Schedule> scheduleList = adminService.findSchedule();
+        //转为json数据
+        String scheduleJson = JSONObject.toJSONString(scheduleList);
+        //json转为数组
+        JSONArray scheduleArray = JSONArray.parseArray(scheduleJson);
+
+        JSONObject[] object = new JSONObject[scheduleArray.size()];
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            object[i] = scheduleArray.getJSONObject(i);
+        }
+
+        List<String> amTime = new ArrayList<>();
+        List<String> pmTime = new ArrayList<>();
+        List<String> ntTime = new ArrayList<>();
+        List<String> amCourse = new ArrayList<>();
+        List<String> pmCourse = new ArrayList<>();
+        List<String> ntCourse = new ArrayList<>();
+
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            amTime.add((String) object[i].get("amTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            pmTime.add((String) object[i].get("pmTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            ntTime.add((String) object[i].get("ntTime"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            amCourse.add((String) object[i].get("amCourse"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            pmCourse.add((String) object[i].get("pmCourse"));
+        }
+        for (int i = 0; i < scheduleArray.size(); i++) {
+            ntCourse.add((String) object[i].get("ntCourse"));
+        }
+        String headName = (String) object[0].get("headName");
+        model.addAttribute("headName", headName);
+        model.addAttribute("amTime", amTime);
+        model.addAttribute("pmTime", pmTime);
+        model.addAttribute("ntTime", ntTime);
+        model.addAttribute("amCourse", amCourse);
+        model.addAttribute("pmCourse", pmCourse);
+        model.addAttribute("ntCourse", ntCourse);
+
         return "admin/TotalSchedule";
     }
 
@@ -540,5 +590,17 @@ public class AdminController {
         if (!SystemPermission.checkIdentity(request, 3)) return SystemPermission.respondBody;
         return JSONObject.toJSONString(reportRepairService.getReportRepairInfo(id));
     }
+
+    @RequestMapping(value = "/updateSchedule",
+            method = RequestMethod.POST,
+            produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String updateSchedule(Schedule schedule) {
+        System.out.println(schedule);
+        adminService.updateSchedule(schedule);
+        return "TotalSchedule";
+    }
+
+
 
 }
