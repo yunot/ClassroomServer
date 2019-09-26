@@ -55,6 +55,7 @@
         }
 
         table.schedule th {
+            font-size: medium;
             text-align: center;
             border-width: 1px;
             padding: 8px;
@@ -683,7 +684,7 @@
                         });
                     } else if (str[1] === "nt_time") {
                         $.ajax({
-                            url: getProjectName() + "/user/updateSchedule",
+                            url: getProjectName() + "/admin/updateSchedule",
                             type: "POST",
                             data: {
                                 id: str[0],

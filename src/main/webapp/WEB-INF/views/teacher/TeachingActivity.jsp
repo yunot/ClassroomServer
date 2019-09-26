@@ -35,7 +35,6 @@
           href="${pageContext.request.contextPath}/views/admin/newresource/imgs/management.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/stamp.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/photocut.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">
 
 
@@ -60,6 +59,7 @@
         }
 
         table.schedule th {
+            font-size: medium;
             text-align: center;
             border-width: 1px;
             padding: 8px;
@@ -174,7 +174,8 @@
                     <li class="nav-title"><br></li>
 
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}" class="nav-link active">
+                        <a href="${pageContext.request.contextPath}/teacher/TeachingActivity?userId=${sessionScope.get("userId")}"
+                           class="nav-link active">
                             <i class="icon icon-speedometer"></i> 教学活动
                         </a>
                     </li>
@@ -269,35 +270,31 @@
                                     <div class="col-md-11">
                                         <p id="fulldate"></p>
                                         <div class="row">
-                                        <div class="contentYuno">
-                                            <span id="lunaryear"></span>
-                                            <span id="weeky"></span>
-                                        </div>
-                                        <div class="contentYuno">
-                                            <span id="nowdate"></span>
-                                        </div>
-                                        <div class="contentYuno">
-                                            <span id="lunardate"></span>
-                                            <span id="weekyEn"></span>
-                                        </div>
+                                            <div class="contentYuno">
+                                                <span id="lunaryear"></span>
+                                                <span id="weeky"></span>
+                                            </div>
+                                            <div class="contentYuno">
+                                                <span id="nowdate"></span>
+                                            </div>
+                                            <div class="contentYuno">
+                                                <span id="lunardate"></span>
+                                                <span id="weekyEn"></span>
+                                            </div>
 
                                         </div>
                                         <p id="hllo"></p>
 
 
-
                                     </div>
-
 
 
                                 </div><div class="stamp_inner stamp_middle">
 
-                                </div><div class="stamp_inner stamp_right"
-                                     <%--style="background-image:url(${pageContext.request.contextPath}/views/admin/newresource/imgs/sky.jpg)"--%>>
+                                </div><div class="stamp_inner stamp_right">
 
 
-
-                                    <ul class="circle_list circle_list1" >
+                                    <ul class="circle_list circle_list1">
                                         <p></p>
                                         <p></p>
                                         <li></li>
@@ -310,12 +307,13 @@
 
                                     </ul>
 
-                               <%-- <div class="col-md-11" style="float: right">--%>
-                                <img id="userPhoto" src="${pageContext.request.contextPath}/views/teacher/images/a.png" width="100%">
-                                    <button style="float:right"  class="btn btn btn-outline-info" data-target="#changeModal" data-toggle="modal">更换图片</button>
-
-                                <%--</div>--%>
-                            </div>
+                                    <img id="userPhoto"
+                                         src="${pageContext.request.contextPath}/views/teacher/images/a.png"
+                                         width="100%">
+                                    <button style="float:right" class="btn btn btn-outline-info"
+                                            data-target="#changeModal" data-toggle="modal">更换图片
+                                    </button>
+                                </div>
                             </li>
 
 
@@ -325,27 +323,23 @@
                     </div>
 
 
-
-
                 </div>
-
-
 
                 <div class="row">
 
 
                     <div class="col-md-6">
-                        <div class="box13">
-                            <div class="card ">
-                                <div class="card-header">
-                                    <div class="col-md-5" style="float: left"><h3>备忘录</h3></div>
-                                    <div class="col-md-7" style="float: right;">
+                        <div class="box6">
+                            <div class="card" style="margin-top:40px">
+                                <div class="card-header bg-light">
+                                    <div class="col-md-5 col-sm-6" style="float: left"><h3>备忘录</h3></div>
+                                    <div class="col-md-6 col-sm-6" style="float: right;">
                                         <a class="btn btn-primary"
                                            href="${pageContext.request.contextPath}/teacher/getNote">历史记录</a>
                                         <button class="btn btn-primary" onclick="saveNote()">保存</button>
                                     </div>
                                 </div>
-                                <div class="card-body" style="border: 1px solid gray">
+                                <div style="border: 1px solid #DEE2E6; height: 200px">
                                     <div class="editor" id="note"></div>
                                 </div>
                             </div>
@@ -353,10 +347,10 @@
                     </div>
 
                     <div class="col-md-6">
-                        <%--<div class="box12">--%>
+                        <div class="box6">
                             <div class="card" style="margin-top:40px">
                                 <div class="card-header bg-light">
-                                    <span class="h4 d-block font-weight-normal mb-2">通知</span>
+                                    <span class="h3 d-block font-weight-normal mb-2">通知</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="layui-collapse">
@@ -395,29 +389,28 @@
                                     </ul>
                                 </nav>
                             </div>
-                        <%--</div>--%>
+                        </div>
                     </div>
 
 
                 </div>
 
-
                 <div class="row">
 
                     <div class=" col-md-12">
-                        <div class="box10">
-                                <div class="col-md-2" style="float: left"><h3>校历</h3></div>
-                                <div class="col-md-2" style="float: right;">
-                                    <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
-                                </div>
+                        <div class="wrap-3">
+                            <div class="col-md-2 col-sm-3 col-xs-3" style="float: left"><h3>校历</h3></div>
+                            <div class="col-md-2 col-sm-3 col-xs-4" style="float: right;">
+                                <button class="btn btn-primary" onclick="saveCalendar()">更改校历</button>
+                            </div>
 
                             <hr>
 
-                                <div class="table-responsive">
-                                    <div>
-                                        <table id="SchoolCalendar" class="col-md-12 gradable"></table>
-                                    </div>
+                            <div class="table-responsive">
+                                <div>
+                                    <table id="SchoolCalendar" class="col-md-12 gradable"></table>
                                 </div>
+                            </div>
                         </div>
 
                     </div>
@@ -426,10 +419,21 @@
 
                 <div class="row">
 
-                    <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <div class="box10">
+                        <div class="wrap-2">
                             <table id="timeTable" class="schedule"></table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="wrap-2">
+                            <h1>说明</h1>
+                            <img src="http://www.wpthemegenerator.com/wp-content/uploads/2012/06/Image.jpg">
+                            <p>
+                                节假日说明
+                            </p>
+                            <a href="#"> 信息 </a>
                         </div>
                     </div>
 
@@ -463,7 +467,6 @@
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -513,7 +516,6 @@
     </div>
 </div>
 
-
 <%--Modal窗口--%>
 <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -546,7 +548,8 @@
                     <input type="file" class="sr-only" id="photoInput" accept="image/*">
                     <span>打开图片</span>
                 </label>
-                <button class="btn btn-primary disabled" disabled="true" onclick="savePic();" data-dismiss="modal">提交</button>
+                <button class="btn btn-primary disabled" disabled="true" onclick="savePic();" data-dismiss="modal">提交
+                </button>
                 <button class="btn btn-close" aria-hidden="true" data-dismiss="modal">取消</button>
             </div>
         </div>
@@ -569,7 +572,7 @@
 
 <script>
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function(){
+    layui.use('element', function () {
         var element = layui.element;
 
         //…
@@ -580,7 +583,7 @@
 <script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropperImg.min.js"></script>
 <script type="text/javascript">
-    var initCropperInModal = function(img, input, modal){
+    var initCropperInModal = function (img, input, modal) {
         var $image = img;
         var $inputImage = input;
         var $modal = modal;
@@ -593,17 +596,17 @@
         var saveData = {};
         var URL = window.URL || window.webkitURL;
         var blobURL;
-        $modal.on('show.bs.modal',function () {
+        $modal.on('show.bs.modal', function () {
             // 如果打开模态框时没有选择文件就点击“打开图片”按钮
             // if(!$inputImage.val()){
             //    $inputImage.click();
             // }
         }).on('shown.bs.modal', function () {
             // 重新创建
-            $image.cropper( $.extend(options, {
+            $image.cropper($.extend(options, {
                 ready: function () {
                     // 当剪切界面就绪后，恢复数据
-                    if(saveData.canvasData){
+                    if (saveData.canvasData) {
                         $image.cropper('setCanvasData', saveData.canvasData);
                         $image.cropper('setCropBoxData', saveData.cropBoxData);
                     }
@@ -614,10 +617,10 @@
             saveData.cropBoxData = $image.cropper('getCropBoxData');
             saveData.canvasData = $image.cropper('getCanvasData');
             // 销毁并将图片保存在img标签
-            $image.cropper('destroy').attr('src',blobURL);
+            $image.cropper('destroy').attr('src', blobURL);
         });
         if (URL) {
-            $inputImage.change(function() {
+            $inputImage.change(function () {
                 var files = this.files;
                 var file;
                 if (!$image.data('cropper')) {
@@ -627,7 +630,7 @@
                     file = files[0];
                     if (/^image\/\w+$/.test(file.type)) {
 
-                        if(blobURL) {
+                        if (blobURL) {
                             URL.revokeObjectURL(blobURL);
                         }
                         blobURL = URL.createObjectURL(file);
@@ -649,20 +652,20 @@
         } else {
             $inputImage.prop('disabled', true).addClass('disabled');
         }
-    }
+    };
 
 
     //转blob
-    var savePic= function(){
+    var savePic = function () {
         var photo = $('#photo').cropper('getCroppedCanvas', {
             width: 300,
             height: 300
         }).toBlob(function (blob) {
 
             var formData = new FormData();
-            formData.append('file', blob,'a.png');
+            formData.append('file', blob, 'a.png');
             var ajaxUrl = "${pageContext.request.contextPath}/savePic";
-            var imgUrl="${pageContext.request.contextPath}/views/teacher/images/a.png"
+            var imgUrl = "${pageContext.request.contextPath}/views/teacher/images/a.png"
             //alert(ajaxUrl);
             //$('#uploadPic').serialize() 无法序列化二进制文件，这里采用formData上传
             //需要浏览器支持：Chrome 7+、Firefox 4+、IE 10+、Opera 12+、Safari 5+。
@@ -673,17 +676,17 @@
                 data: formData,
                 async: false,
                 cache: false,
-                contentType:false,
+                contentType: false,
                 processData: false,
                 mimeType: "multipart/form-data",
                 success: function (data) {
                     alert(data);
-                    document.getElementById('userPhoto').src="${pageContext.request.contextPath}/views/teacher/images/a.png?t="+Math.random();
+                    document.getElementById('userPhoto').src = "${pageContext.request.contextPath}/views/teacher/images/a.png?t=" + Math.random();
                     <%--$('.user-photo').attr('src', '${pageContext.request.contextPath}/images/a.png?t=' + Math.random());--%>
                     $('#changeModal').modal('hide');
                 },
-                error: function(data) {
-                    alert("error:"+data.responseText);
+                error: function (data) {
+                    alert("error:" + data.responseText);
 
                 }
             });
@@ -692,8 +695,8 @@
 
     }
 
-    $(function(){
-        initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));
+    $(function () {
+        initCropperInModal($('#photo'), $('#photoInput'), $('#changeModal'));
     });
 </script>
 
@@ -815,7 +818,7 @@
                     user_id: '${sessionScope.get("userId")}'
                 },
                 success: function (data) {
-                    // location.reload();//刷新当前页面
+                    location.reload();//刷新当前页面
                     showMsgDialog(data);
                 },
                 error: function () {
@@ -857,12 +860,6 @@
     var pmTime = '${pmTime}'.replace('[', '').replace(']', '').split(',');
     var ntTime = '${ntTime}'.replace('[', '').replace(']', '').split(',');
 
-    /* var amCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-     var pmCourse = ["预备铃", "第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-     var ntCourse = ["第一节课", "第二节课", "第三节课", "第四节课", "第五节课"];
-     var amTime = ["7:50", "8:00-8:45", "8:50-9:35", "9:50-10:35", "10:40-11:25", "11:30-12:15"];
-     var pmTime = ["13:35", "13:45-14:30", "14:35-15:20", "15:35-16:20", "16:25-17:10"];
-     var ntTime = ["18:30-19:15", "19:25-20:10", "20:20-21:05"];*/
 
     var table = document.getElementById("timeTable");
     var headName = '${headName}';
@@ -888,9 +885,6 @@
         td.id = "head";
         td.height = 50;
         td.classList.add("edit");
-        // th.onclick = function edit(event) {
-        //     alert("您点击的是:" + event.srcElement.id);
-        // }
         td.colSpan = colspan;
         tr.appendChild(td);
         tableName.appendChild(tr);
@@ -915,10 +909,6 @@
         td.innerHTML = periodName;
         td.id = td.innerHTML;
         td.rowSpan = courseNum + 1;
-        // td.classList.add("edit");
-        // td.onclick = function edit(event) {
-        //     alert("您点击的是:" + event.srcElement.id);
-        // }
         tr.appendChild(td);
         tableName.appendChild(tr);
 
@@ -929,22 +919,15 @@
             td1.innerHTML = courseName[i - 1];
             td1.id = i + "," + src + "_course";
             td1.classList.add("edit");
-            // td1.onclick = function edit(event) {
-            //     alert("您点击的是:" + event.srcElement.id);
-            // }
             td2.innerHTML = courseTime[i - 1];
             td2.id = i + "," + src + "_time";
             td2.classList.add("edit");
-            // td2.onclick = function edit(event) {
-            //     alert("您点击的是:" + event.srcElement.id);
-            // }
             tr.appendChild(td1);
             tr.appendChild(td2);
             tableName.appendChild(tr);
         }
     }
 </script>
-
 
 
 </body>

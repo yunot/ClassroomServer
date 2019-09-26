@@ -77,7 +77,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/admin/WeeklySchedule">
-                            <span class="mdi mdi-18px mdi-numeric-7-box-multiple-outline"></span>周课表管理<
+                            <span class="mdi mdi-18px mdi-numeric-7-box-multiple-outline"></span>周课表管理
                         </a>
                     </li>
                     <li class="nav-item">
