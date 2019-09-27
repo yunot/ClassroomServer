@@ -35,6 +35,8 @@
           href="${pageContext.request.contextPath}/views/admin/newresource/imgs/management.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/stamp.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/photocut.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/mask.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/vendor/css/thirdeffect.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/newresource/cropper/cropper.min.css">
 
 
@@ -257,6 +259,7 @@
                                     <ul class="circle_list circle_list2">
                                         <p></p>
                                         <p></p>
+                                        <p></p>
                                         <li></li>
                                         <p></p>
                                         <li></li>
@@ -267,19 +270,19 @@
 
                                     </ul>
 
-                                    <div class="col-md-11">
+                                    <div class="col-md-10" style="margin-top:20px;margin-left:20px">
                                         <p id="fulldate"></p>
                                         <div class="row">
                                             <div class="contentYuno">
                                                 <span id="lunaryear"></span>
-                                                <span id="weeky"></span>
+                                                <span id="weeky" class="leftRadius"></span>
                                             </div>
                                             <div class="contentYuno">
                                                 <span id="nowdate"></span>
                                             </div>
                                             <div class="contentYuno">
                                                 <span id="lunardate"></span>
-                                                <span id="weekyEn"></span>
+                                                <span id="weekyEn" class="rightRadius"></span>
                                             </div>
 
                                         </div>
@@ -297,6 +300,7 @@
                                     <ul class="circle_list circle_list1">
                                         <p></p>
                                         <p></p>
+                                        <p></p>
                                         <li></li>
                                         <p></p>
                                         <li></li>
@@ -307,13 +311,15 @@
 
                                     </ul>
 
+                                <div class="view third-effect">
                                     <img id="userPhoto"
                                          src="${pageContext.request.contextPath}/views/teacher/images/a.png"
                                          width="100%">
-                                    <button style="float:right" class="btn btn btn-outline-info"
-                                            data-target="#changeModal" data-toggle="modal">更换图片
-                                    </button>
-                                </div>
+                                    <div class="mask">
+                                        <button style="float:right" class="btn btn btn-outline-info"
+                                                data-target="#changeModal" data-toggle="modal">更换图片
+                                        </button>
+                                    </div>
                             </li>
 
 

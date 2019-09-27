@@ -3,7 +3,7 @@ html,body,div,p,i,span,ul,li{
     padding:0;
 }
 /*body{*/
-    /*background-color:#eee;*/
+/*background-color:#eee;*/
 /*}*/
 ul{
     list-style:none;
@@ -19,7 +19,7 @@ ul{
     border-radius:5px;
 }
 .stamp_inner{
-    height: 210px;
+    height: 100%;
     background-color: white;
     display:inline-block;
     vertical-align:top;

@@ -1,99 +1,111 @@
-        .calendarYuno {
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            text-align: center;
-            color: #C1DBF5;
-        }
-        .calendarYuno p {
-            color: #000000;
-            font: 600 78px/80px "微软雅黑";
-            text-align: center;
-        }
+.calendarYuno {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    text-align: center;
+    color: #C1DBF5;
+}
+.calendarYuno p {
+    color: #000000;
+    font: 600 78px/80px 微软雅黑;
+    text-align: center;
+}
 
-        #fulldate{
-            color: #000000;
-            font: 400 35px/40px "微软雅黑";
+#fulldate{
+    color: #00008B;
+    font: 400 35px/40px 微软雅黑;
 
-            text-align: center;
-        }
-        #hllo{
-            color: #000000;
-            font: 300 20px/30px "微软雅黑";
-            text-align: center;
-        }
-        #nowdate {
-            display: block;
-            height: 120px;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-           /* margin: 20px auto;*/
-            font: 700 90px/100px "Times New Roman";
-            color: #000000;
+    text-align: center;
+    border-bottom: 2px double rgb(0, 0, 139);
+    border-width: 2px;
 
-        }
-        .calendarYuno strong {
+}
+#hllo{
+    color: #00008B;
+    font: 300 20px/30px 微软雅黑;
+    text-align: center;
+    border-top: 1px solid rgb(0, 0, 139);
+}
+#nowdate {
+    display: block;
+    height: 120px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    /* margin: 20px auto;*/
+    font: 700 90px/100px "Times New Roman";
+    color: #00008B;
 
-            margin: 20px auto;
-            padding: 5px;
-            display: block;
-            width: 250px;
-            height: 40px;
-            color: #000000;
-            font: 500 20px/26px "微软雅黑";
+}
+.calendarYuno strong {
 
-        }
-        #time {
-            color: #000000;
-            font: 500 20px/40px "微软雅黑";
-        }
-        
-        #weeky{
+    margin: 20px auto;
+    padding: 5px;
+    display: block;
+    width: 250px;
+    height: 40px;
+    color: #000000;
+    font: 500 20px/26px 微软雅黑;
 
-            display:inline-block;
-            height: 50px;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-            margin: 0 auto;
-            font: 300 30px/40px "微软雅黑";
-            color: #000000;
-        }
-        #weekyEn{
-             display: block;
-            height: 50px;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-            margin: 0 auto;
-            font: 300 30px/40px "Times New Roman";
-            color: #000000;
-        }
-        #lunaryear{
-            display: block;
-            height: 65px;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-            margin: 0 auto;
-            font: 300 25px/40px "微软雅黑";
-            color: #000000;
-        }
-        #lunardate{
-            display: block;
-            height: 65px;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-            margin: 0 auto;
-            font: 300 25px/40px "微软雅黑";
-            color: #000000;
-        }
-        
-        
-        .contentYuno{
-            width:33%;
-            height:120px;
-            float:left;
-        }
+}
+#time {
+    color: #000000;
+    font: 500 20px/40px 微软雅黑;
+}
+
+#weeky{
+
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(0, 0, 139);
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin: 0px auto;
+    font: 300 30px/40px 微软雅黑;
+}
+#weekyEn{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #00008B;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin: 0px auto;
+    font: 300 30px/40px "Times New Roman";
+}
+#lunaryear{
+    display: block;
+    height: 65px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    margin: 0 auto;
+    font: 300 25px/40px 微软雅黑;
+    color: #00008B;
+}
+#lunardate{
+    display: block;
+    height: 65px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    margin: 0 auto;
+    font: 300 25px/40px 微软雅黑;
+    color: #00008B;
+}
+
+
+.contentYuno{
+    width:33%;
+    height:120px;
+    float:left;
+}
+
+.leftRadius {
+    border-radius: 30px 0px 0px 30px;
+}
+
+.rightRadius {
+    border-radius: 0px 30px 30px 0px;
+}
